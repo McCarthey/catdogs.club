@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from '../views/Home'
 import About from '../views/About'
+import AppBar from '@material-ui/core/AppBar';
 
 import './router.scss'
 
@@ -9,7 +10,7 @@ function AppRouter() {
   return (
     <Router>
       <div>
-        <nav className="header-navbar">
+        <AppBar position="static" className="header-navbar">
           <ul>
             <li>
               <Link to="/">Home</Link>
@@ -18,7 +19,7 @@ function AppRouter() {
               <Link to="/about/">About</Link>
             </li>
           </ul>
-        </nav>
+        </AppBar>
 
         <Route path="/" exact component={Home} />
         <Route path="/about/" component={About} />
