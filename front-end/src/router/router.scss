@@ -1,0 +1,19 @@
+.header-navbar {
+  height: 64px;
+  width: 100vw;
+  background-color: #282c34;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 0;
+  line-height: 64px;
+  li {
+    margin-right: 10px;
+    a {
+      color: #fff;
+    }
+  }
+}
