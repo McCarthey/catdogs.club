@@ -7,8 +7,9 @@ import (
 )
 
 type Common struct {
-	EnvModel string `yaml:"envModel"`
-	DbAddr   string `yaml:"dbAddr"`
+	EnvModel   string `yaml:"envModel"`
+	DbAddr     string `yaml:"dbAddr"`
+	SqlLogFile string `yaml:"sqlLogFile"`
 }
 
 var c *Common
@@ -27,4 +28,12 @@ func GetEnvModel() string {
 
 func GetDbAddr() string {
 	return c.DbAddr
+}
+
+func GetSqlLogFile() string {
+	return c.SqlLogFile
+}
+
+func GetCommon() *Common {
+	return c
 }

@@ -1,11 +1,16 @@
 package main
 
 import (
+	"catdogs.club/back-end/models"
 	"catdogs.club/back-end/routers"
 	"fmt"
 	"net/http"
 	"time"
 )
+
+func init() {
+	models.InitModel()
+}
 
 func main() {
 	runServer()

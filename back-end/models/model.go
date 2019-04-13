@@ -2,18 +2,24 @@ package models
 
 import (
 	"catdogs.club/back-end/configs/common"
-	"fmt"
-	"github.com/jinzhu/gorm"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/xorm"
+	"log"
+	"os"
 )
 
-var db *gorm.DB
+var engine *xorm.Engine
 
 func InitModel() {
-	db, err := gorm.Open("mysql", configs.GetDbAddr())
+	engine, err := xorm.NewEngine("mysql", configs.GetDbAddr())
+	f, err := os.Create(configs.GetSqlLogFile())
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
-	db.SingularTable(true)
-	db.DB().SetMaxIdleConns(10)
-	db.DB().SetMaxOpenConns(100)
+	logger := xorm.NewSimpleLogger(f)
+	logger.ShowSQL(true)
+	engine.SetLogger(logger)
+	engine.SetMaxIdleConns(10)
+	engine.SetMaxOpenConns(100)
+	engine.Sync2(new(User))
 }
