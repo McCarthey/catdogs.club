@@ -22,3 +22,8 @@ func (u *User) Set() error {
 	}
 	return nil
 }
+
+func (u *User) Get() (bool, error) {
+	has, err := engine.Get(u)
+	return has, err
+}

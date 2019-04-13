@@ -11,7 +11,8 @@ import (
 var engine *xorm.Engine
 
 func InitModel() {
-	engine, err := xorm.NewEngine("mysql", configs.GetDbAddr())
+	var err error
+	engine, err = xorm.NewEngine("mysql", configs.GetDbAddr())
 	f, err := os.Create(configs.GetSqlLogFile())
 	if err != nil {
 		log.Fatal(err)

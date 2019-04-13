@@ -18,7 +18,6 @@ func InitRouter() *gin.Engine {
 
 func registerApi(e *gin.Engine) {
 	apiv1 := e.Group("v1")
-	{
-		apiv1.GET("/", test.Hello)
-	}
+	apiv1.GET("/", test.Hello)
+	apiv1.GET("/user", test.GetUser)
 }
