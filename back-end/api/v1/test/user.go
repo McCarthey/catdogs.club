@@ -7,16 +7,12 @@ import (
 )
 
 func GetUser(c *gin.Context) {
-	u := new(models.User)
-	u.Name = "Hejie"
-	has, err := u.Get()
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"请求错误": "xxx"})
+	u := &models.User{
+		Name: "Yoko",
 	}
-	if has {
-		c.JSON(http.StatusOK, gin.H{
-			"UserName": u.Name,
-			"Email":    u.Email,
-		})
-	}
+	u.Get()
+	c.JSON(http.StatusOK, gin.H{
+		"name":  u.Name,
+		"email": u.Email,
+	})
 }

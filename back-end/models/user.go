@@ -1,12 +1,10 @@
 package models
 
-type Profile struct {
-	NickName string
-	Country  string
-}
+import "github.com/jinzhu/gorm"
 
 type User struct {
-	Email        string `xorm:"varchar(50)"`
+	gorm.Model
+	Email        string
 	Flags        int
 	Name         string
 	Openid       string
@@ -15,15 +13,10 @@ type User struct {
 	RegisterTime int
 }
 
-func (u *User) Set() error {
-	_, err := engine.Insert(&u)
-	if err != nil {
-		return err
-	}
-	return nil
+func (u *User) Set() {
+	db.Create(&u)
 }
 
-func (u *User) Get() (bool, error) {
-	has, err := engine.Get(u)
-	return has, err
+func (u *User) Get() {
+	db.Find(&u)
 }
