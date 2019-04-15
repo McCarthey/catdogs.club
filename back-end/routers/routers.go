@@ -19,4 +19,5 @@ func InitRouter() *gin.Engine {
 func registerApi(e *gin.Engine) {
 	apiv1 := e.Group("/api")
 	apiv1.POST("/login", user.Login)
+	apiv1.POST("/register", user.Register)
 }
