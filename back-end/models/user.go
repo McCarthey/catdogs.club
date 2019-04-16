@@ -1,29 +1,21 @@
 package models
 
-type Profile struct {
-	NickName string
-	Country  string
-}
-
 type User struct {
-	Email        string `xorm:"varchar(50)"`
+	Id           int    `xorm:"pk autoincr"`
+	Email        string `xorm:"varchar(36)"`
 	Flags        int
-	Name         string
-	Openid       string
-	Password     string
-	PhoneNum     string
+	Name         string `xorm:"varchar(32)"`
+	Openid       string `xorm:"varchar(64)"`
+	Password     string `xorm:"varchar(32)"`
+	PhoneNum     string `xorm:"varchar(18)"`
 	RegisterTime int
 }
 
-func (u *User) Set() error {
-	_, err := engine.Insert(&u)
-	if err != nil {
-		return err
-	}
-	return nil
+func (u *User) Set() {
+	db.Insert(u)
 }
 
-func (u *User) Get() (bool, error) {
-	has, err := engine.Get(u)
-	return has, err
+func (u *User) Get() (has bool, err error) {
+	has, err = db.Get(u)
+	return
 }

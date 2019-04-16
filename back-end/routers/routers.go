@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"catdogs.club/back-end/api/v1/test"
+	"catdogs.club/back-end/api/v1/user"
 	"github.com/gin-gonic/gin"
 )
 
@@ -17,7 +17,7 @@ func InitRouter() *gin.Engine {
 }
 
 func registerApi(e *gin.Engine) {
-	apiv1 := e.Group("v1")
-	apiv1.GET("/", test.Hello)
-	apiv1.GET("/user", test.GetUser)
+	apiv1 := e.Group("/api")
+	apiv1.POST("/login", user.Login)
+	apiv1.POST("/register", user.Register)
 }

@@ -2,8 +2,15 @@ package configs
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
+
+	"gopkg.in/yaml.v2"
+)
+
+var (
+	EnvModel   string
+	DbAddr     string
+	SqlLogFile string
 )
 
 type Common struct {
@@ -20,20 +27,12 @@ func init() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	initFields()
 }
 
-func GetEnvModel() string {
-	return c.EnvModel
-}
-
-func GetDbAddr() string {
-	return c.DbAddr
-}
-
-func GetSqlLogFile() string {
-	return c.SqlLogFile
-}
-
-func GetCommon() *Common {
-	return c
+func initFields() {
+	EnvModel = c.EnvModel
+	DbAddr = c.DbAddr
+	SqlLogFile = c.SqlLogFile
 }

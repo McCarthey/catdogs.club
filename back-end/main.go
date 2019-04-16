@@ -1,11 +1,12 @@
 package main
 
 import (
-	"catdogs.club/back-end/models"
-	"catdogs.club/back-end/routers"
 	"fmt"
 	"net/http"
 	"time"
+
+	"catdogs.club/back-end/models"
+	"catdogs.club/back-end/routers"
 )
 
 func init() {
