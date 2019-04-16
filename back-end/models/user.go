@@ -1,22 +1,20 @@
 package models
 
-import "github.com/jinzhu/gorm"
-
 type User struct {
-	gorm.Model
-	Email        string
+	Id           int    `xorm:"pk autoincr"`
+	Email        string `xorm:"varchar(36)"`
 	Flags        int
-	Name         string
-	Openid       string
-	Password     string
-	PhoneNum     string
+	Name         string `xorm:"varchar(32)"`
+	Openid       string `xorm:"varchar(64)"`
+	Password     string `xorm:"varchar(32)"`
+	PhoneNum     string `xorm:"varchar(18)"`
 	RegisterTime int
 }
 
 func (u *User) Set() {
-	db.Create(&u)
+	db.Insert(u)
 }
 
 func (u *User) Get() {
-	db.Find(&u)
+	db.Get(u)
 }

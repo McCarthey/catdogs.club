@@ -1,11 +1,12 @@
 package main
 
 import (
-	"catdogs.club/back-end/models"
-	"catdogs.club/back-end/routers"
 	"fmt"
 	"net/http"
 	"time"
+
+	"catdogs.club/back-end/models"
+	"catdogs.club/back-end/routers"
 )
 
 func init() {
@@ -13,12 +14,6 @@ func init() {
 }
 
 func main() {
-	u := &models.User{
-		Name:     "Yoko",
-		Email:    "18836617@qq.com",
-		PhoneNum: "15336200123",
-	}
-	u.Set()
 	runServer()
 }
 

@@ -1,31 +1,25 @@
 package models
 
 import (
-	"catdogs.club/back-end/configs/common"
+	configs "catdogs.club/back-end/configs/common"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jinzhu/gorm"
+	"github.com/go-xorm/xorm"
 )
 
-var db *gorm.DB
-
-func initTables() {
-	if !db.HasTable(&User{}) {
-		db.CreateTable(&User{})
-	}
-	db.AutoMigrate(&User{})
-}
+var db *xorm.Engine
 
 func InitModel() {
 	var err error
-	db, err = gorm.Open("mysql", configs.GetDbAddr())
+	db, err = xorm.NewEngine("mysql", configs.DbAddr)
 	if err != nil {
 		panic(err)
 	}
+	db.SetMaxIdleConns(100)
+	db.SetMaxOpenConns(1000)
 
-	db.SingularTable(true)
-	db.DB().SetMaxIdleConns(10)
-	db.DB().SetMaxOpenConns(100)
-
-	// 初始化表
 	initTables()
+}
+
+func initTables() {
+	db.Sync2(new(User))
 }

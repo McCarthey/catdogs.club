@@ -16,11 +16,11 @@ func Register(c *gin.Context) {
 	if err != nil {
 		fmt.Println(err)
 	}
-	passwdByte := []byte(user.Password)
-	passwd := fmt.Sprintf("%x", md5.Sum(passwdByte))
+	pwData := md5.Sum([]byte(user.Password))
+	pwS := fmt.Sprintf("%x", pwData)
 	u := models.User{
 		Email:    user.Email,
-		Password: passwd,
+		Password: pwS,
 	}
 	u.Set()
 	c.JSON(http.StatusOK, gin.H{
