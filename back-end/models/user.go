@@ -15,6 +15,7 @@ func (u *User) Set() {
 	db.Insert(u)
 }
 
-func (u *User) Get() {
-	db.Get(u)
+func (u *User) Get() (has bool, err error) {
+	has, err = db.Get(u)
+	return
 }
