@@ -13,13 +13,11 @@ function AppRouter() {
       <div>
         <AppBar position="static" className="header-navbar">
           <ul>
-            <li>
+            <li className="route-wrap">
               <Link to="/">Home</Link>
-            </li>
-            <li>
               <Link to="/about/">About</Link>
             </li>
-            <li>
+            <li className="user-wrap">
               <Link to="/signin/">SignIn</Link>
             </li>
           </ul>
