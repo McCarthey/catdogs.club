@@ -11,8 +11,9 @@ type User struct {
 	RegisterTime int
 }
 
-func (u *User) Set() {
-	db.Insert(u)
+func (u *User) Set() error {
+	_, err := db.Insert(u)
+	return err
 }
 
 func (u *User) Get() (has bool, err error) {
