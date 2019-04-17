@@ -14,8 +14,8 @@ func InitModel() {
 	if err != nil {
 		panic(err)
 	}
-	db.SetMaxIdleConns(100)
-	db.SetMaxOpenConns(1000)
+	db.SetMaxIdleConns(configs.IdleConns)
+	db.SetMaxOpenConns(configs.OpenConns)
 
 	initTables()
 }
