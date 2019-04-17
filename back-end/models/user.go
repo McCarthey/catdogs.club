@@ -20,3 +20,20 @@ func (u *User) Get() (has bool, err error) {
 	has, err = db.Get(u)
 	return
 }
+
+type VerifyCode struct {
+	Id        int    `xorm:"pk autoincr"`
+	Email     string `xorm:"varchar(36)"`
+	Code      string `xorm:"varchar(8)"`
+	Timestamp int
+}
+
+func (v *VerifyCode) Set() error {
+	_, err := db.Insert(v)
+	return err
+}
+
+func (v *VerifyCode) Get() (has bool, err error) {
+	has, err = db.Get(v)
+	return
+}
