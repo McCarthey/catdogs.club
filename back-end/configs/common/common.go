@@ -8,19 +8,27 @@ import (
 )
 
 var (
-	EnvModel   string
-	DbAddr     string
-	SqlLogFile string
-	IdleConns  int
-	OpenConns  int
+	EnvModel     string
+	DbAddr       string
+	SqlLogFile   string
+	IdleConns    int
+	OpenConns    int
+	AccessKeyId  string
+	AccessSecret string
+	SignName     string
+	TemplateCode string
 )
 
 type Common struct {
-	EnvModel   string `yaml:"envModel"`
-	DbAddr     string `yaml:"dbAddr"`
-	SqlLogFile string `yaml:"sqlLogFile"`
-	IdleConns  int    `yaml:"idleConns"`
-	OpenConns  int    `yaml:"openConns"`
+	EnvModel     string `yaml:"envModel"`
+	DbAddr       string `yaml:"dbAddr"`
+	SqlLogFile   string `yaml:"sqlLogFile"`
+	IdleConns    int    `yaml:"idleConns"`
+	OpenConns    int    `yaml:"openConns"`
+	AccessKeyId  string `yaml:"accessKeyID"`
+	AccessSecret string `yaml:"accessSecret"`
+	SignName     string `yaml:"signName"`
+	TemplateCode string `yaml:"templateCode"`
 }
 
 var c *Common
@@ -41,4 +49,8 @@ func initFields() {
 	SqlLogFile = c.SqlLogFile
 	IdleConns = c.IdleConns
 	OpenConns = c.OpenConns
+	AccessKeyId = c.AccessKeyId
+	AccessSecret = c.AccessSecret
+	SignName = c.SignName
+	TemplateCode = c.TemplateCode
 }

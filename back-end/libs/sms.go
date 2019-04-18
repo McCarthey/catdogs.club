@@ -3,25 +3,23 @@ package libs
 import (
 	"fmt"
 
+	configs "catdogs.club/back-end/configs/common"
+
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 )
 
 const (
-	accessKeyId  = "LTAI7GgefI5FIuhS"
-	accessSecret = "WTrOHELCEaYDzapYeOFamaDBHIWsfr"
-	method       = "POST"
-	scheme       = "https"
-	domain       = "dysmsapi.aliyuncs.com"
-	version      = "2017-05-25"
-	apiName      = "SendSms"
-	regionId     = "cn-hangzhou"
-	signName     = "yoko博客"
-	templateCode = "SMS_163845182"
+	method   = "POST"
+	scheme   = "https"
+	domain   = "dysmsapi.aliyuncs.com"
+	version  = "2017-05-25"
+	apiName  = "SendSms"
+	regionId = "cn-hangzhou"
 )
 
 func SendSms(phone, code string) error {
-	client, err := sdk.NewClientWithAccessKey("cn-hangzhou", accessKeyId, accessSecret)
+	client, err := sdk.NewClientWithAccessKey("cn-hangzhou", configs.AccessKeyId, configs.AccessSecret)
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -34,8 +32,8 @@ func SendSms(phone, code string) error {
 	request.Version = version
 	request.ApiName = apiName
 	request.QueryParams["RegionId"] = regionId
-	request.QueryParams["SignName"] = signName
-	request.QueryParams["TemplateCode"] = templateCode
+	request.QueryParams["SignName"] = configs.SignName
+	request.QueryParams["TemplateCode"] = configs.TemplateCode
 	request.QueryParams["PhoneNumbers"] = phone
 	request.QueryParams["TemplateParam"] = "{\"code\":\"" + code + "\"}"
 
