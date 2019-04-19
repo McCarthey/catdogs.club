@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"catdogs.club/back-end/api/v1/event"
 	"catdogs.club/back-end/api/v1/user"
 	"github.com/gin-gonic/gin"
 )
@@ -20,4 +21,5 @@ func registerApi(e *gin.Engine) {
 	apiv1 := e.Group("/api")
 	apiv1.POST("/login", user.Login)
 	apiv1.POST("/register", user.Register)
+	apiv1.POST("/sendsms", event.SendSms)
 }

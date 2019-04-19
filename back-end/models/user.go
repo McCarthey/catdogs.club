@@ -24,6 +24,7 @@ func (u *User) Get() (has bool, err error) {
 type VerifyCode struct {
 	Id        int    `xorm:"pk autoincr"`
 	Email     string `xorm:"varchar(36)"`
+	PhoneNum  string `xorm:"varchar(15)"`
 	Code      string `xorm:"varchar(8)"`
 	Timestamp int
 }

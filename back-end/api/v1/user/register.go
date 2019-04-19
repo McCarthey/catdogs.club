@@ -11,12 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// @Summary 注册接口
-// @Produce json
-// @Param email query string true "email"
-// @Param password query string true "password"
-// @Success 200 {string} json "{"code": 0, "msg": "sucess", "data": {}}"
-// @Router /api/register [post]
 func Register(c *gin.Context) {
 	var user User
 	err := c.ShouldBind(&user)
