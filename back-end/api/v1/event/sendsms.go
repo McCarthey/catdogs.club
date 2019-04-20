@@ -3,10 +3,8 @@ package event
 import (
 	"fmt"
 
-	"catdogs.club/back-end/models"
-
 	"catdogs.club/back-end/libs"
-
+	"catdogs.club/back-end/models"
 	"github.com/gin-gonic/gin"
 )
 

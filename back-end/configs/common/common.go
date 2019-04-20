@@ -17,12 +17,14 @@ var (
 	AccessSecret string
 	SignName     string
 	TemplateCode string
+	LogFile      string
 )
 
 type Common struct {
 	EnvModel     string `yaml:"envModel"`
 	DbAddr       string `yaml:"dbAddr"`
 	SqlLogFile   string `yaml:"sqlLogFile"`
+	LogFile      string `yaml:"logFile"`
 	IdleConns    int    `yaml:"idleConns"`
 	OpenConns    int    `yaml:"openConns"`
 	AccessKeyId  string `yaml:"accessKeyID"`
@@ -47,6 +49,7 @@ func initFields() {
 	EnvModel = c.EnvModel
 	DbAddr = c.DbAddr
 	SqlLogFile = c.SqlLogFile
+	LogFile = c.LogFile
 	IdleConns = c.IdleConns
 	OpenConns = c.OpenConns
 	AccessKeyId = c.AccessKeyId
