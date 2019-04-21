@@ -43,6 +43,10 @@ const styles = (theme: Theme) => createStyles({
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing.unit
   },
+  remember: {
+    textAlign: "left",
+    width: "100%"
+  },
   submit: {
     marginTop: theme.spacing.unit * 3
   }
@@ -84,6 +88,7 @@ class SignIn extends React.Component<any, any> {
               />
             </FormControl>
             <FormControlLabel
+              className={classes.remember}
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
