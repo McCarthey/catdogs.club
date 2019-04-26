@@ -3,18 +3,15 @@ package user
 import (
 	"crypto/md5"
 	"fmt"
-	"time"
 
 	"catdogs.club/back-end/libs"
 	"catdogs.club/back-end/models"
-
 	"github.com/gin-gonic/gin"
 )
 
 func Register(c *gin.Context) {
 	var user User
-	err := c.ShouldBind(&user)
-	if err != nil {
+	if err := c.ShouldBind(&user); err != nil {
 		fmt.Println(err)
 	}
 
@@ -33,9 +30,8 @@ func Register(c *gin.Context) {
 
 func saveCode(code string, param *User) {
 	v := models.VerifyCode{
-		Email:     param.Email,
-		Code:      code,
-		Timestamp: int(time.Now().Unix()),
+		Email: param.Email,
+		Code:  code,
 	}
 	err := v.Set()
 	if err != nil {
@@ -48,9 +44,8 @@ func saveUser(param *User) {
 	pwData := md5.Sum([]byte(param.Password))
 	pwS := fmt.Sprintf("%x", pwData)
 	u := models.User{
-		Email:        param.Email,
-		Password:     pwS,
-		RegisterTime: int(time.Now().Unix()),
+		Email:    param.Email,
+		Password: pwS,
 	}
 	err := u.Set()
 	if err != nil {

@@ -8,7 +8,7 @@ type User struct {
 	Openid       string `xorm:"varchar(64)"`
 	Password     string `xorm:"varchar(32)"`
 	PhoneNum     string `xorm:"varchar(18)"`
-	RegisterTime int
+	RegisterTime int    `xorm:"created"`
 }
 
 func (u *User) Set() error {
@@ -26,7 +26,7 @@ type VerifyCode struct {
 	Email     string `xorm:"varchar(36)"`
 	PhoneNum  string `xorm:"varchar(15)"`
 	Code      string `xorm:"varchar(8)"`
-	Timestamp int
+	Timestamp int    `xorm:"created"`
 }
 
 func (v *VerifyCode) Set() error {

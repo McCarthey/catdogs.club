@@ -1,18 +1,22 @@
 package test
 
 import (
-	"catdogs.club/back-end/models"
-	"github.com/gin-gonic/gin"
+	"fmt"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
+type TestParam struct {
+	Name string `form:"name"`
+	Id   string `form:"id"`
+}
+
 func GetUser(c *gin.Context) {
-	u := &models.User{
-		Name: "Yoko",
+	var testParam TestParam
+	if err := c.ShouldBind(&testParam); err != nil {
+		fmt.Println(err)
 	}
-	u.Get()
-	c.JSON(http.StatusOK, gin.H{
-		"name":  u.Name,
-		"email": u.Email,
-	})
+	fmt.Println(testParam)
+	c.JSON(http.StatusOK, testParam)
 }

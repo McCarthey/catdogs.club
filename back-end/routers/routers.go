@@ -4,7 +4,7 @@ import (
 	"io"
 	"os"
 
-	"catdogs.club/back-end/api/v1/test"
+	"catdogs.club/back-end/api/v1/user"
 	configs "catdogs.club/back-end/configs/common"
 	"github.com/gin-gonic/gin"
 )
@@ -29,8 +29,6 @@ func InitRouter() *gin.Engine {
 
 func registerApi(e *gin.Engine) {
 	apiv1 := e.Group("/api")
-	apiv1.POST("/", test.Hello)
-	// apiv1.POST("/login", user.Login)
-	// apiv1.POST("/register", user.Register)
-	// apiv1.POST("/sendsms", event.SendSms)
+	apiv1.POST("/login", user.Login)
+	apiv1.POST("/register", user.Register)
 }
