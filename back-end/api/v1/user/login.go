@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"catdogs.club/back-end/libs"
+	"catdogs.club/back-end/logger"
 	"catdogs.club/back-end/models"
 	"github.com/gin-gonic/gin"
 )
@@ -22,6 +23,7 @@ func Login(c *gin.Context) {
 	u := models.User{
 		Email: user.Email,
 	}
+	logger.Info(u)
 	has, err := u.Get()
 	fmt.Println(err)
 	if !has {

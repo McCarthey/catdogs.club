@@ -1,17 +1,12 @@
 package routers
 
 import (
-	"io"
-	"os"
-
 	"catdogs.club/back-end/api/v1/user"
 	configs "catdogs.club/back-end/configs/common"
 	"github.com/gin-gonic/gin"
 )
 
 func InitRouter() *gin.Engine {
-	f, _ := os.Create(configs.LogFile)
-	gin.DefaultWriter = io.MultiWriter(f)
 	gin.SetMode(gin.ReleaseMode)
 	if configs.EnvModel == "debug" {
 		gin.SetMode(gin.DebugMode)
