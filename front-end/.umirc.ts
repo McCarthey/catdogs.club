@@ -4,7 +4,7 @@ import { IConfig } from 'umi-types';
 const config: IConfig = {
   treeShaking: true,
   urlLoaderExcludes: [/.scss$/],
-  chainWebpack(config) {
+  chainWebpack(config) { // 使用scss-resources-loader为项目注入全局变量
     config.module
       .rule('sass-resources')
       .test(/.scss$/)
