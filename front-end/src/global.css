@@ -1,0 +1,13 @@
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+.menu-wrap .ant-menu-item.ant-menu-item-selected {
+  color: #fff;
+}

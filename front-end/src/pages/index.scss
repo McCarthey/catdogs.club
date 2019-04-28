@@ -1,0 +1,50 @@
+.normal {
+  font-family: Georgia, sans-serif;
+}
+
+.header {
+  display: flex;
+  background-color: $main-color;
+  justify-content: space-between;
+}
+
+.menu-wrap {
+  background-color: transparent;
+  .ant-menu-submenu .ant-menu-submenu-horizontal .ant-menu-overflowed-submenu {
+    color: #fff !important;
+  }
+  .ant-menu-item-selected {
+    color: #fff !important;
+  }
+}
+
+.avatar-wrap {
+  cursor: pointer;
+  line-height: 64px;
+}
+
+.list {
+  font-size: 1.2em;
+  margin-top: 1.8em;
+  list-style: none;
+  line-height: 1.5em;
+}
+
+.list code {
+  background: #f7f7f7;
+}
+
+.username {
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* 退出登录 */
+.logout {
+  &:hover {
+    a {
+      color: #fff;
+    }
+    background-color: $danger-color !important;
+  }
+}
