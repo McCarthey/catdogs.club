@@ -1,5 +1,9 @@
 package models
 
+const (
+	IsActivate = 1 << iota // 账号是否激活
+)
+
 type User struct {
 	Id           int    `xorm:"pk autoincr"`
 	Email        string `xorm:"varchar(36)"`
@@ -21,11 +25,15 @@ func (u *User) Get() (has bool, err error) {
 	return
 }
 
+func UpdateByEmail(u *User) {
+	db.Id(u.Id).Update(&u)
+}
+
 type VerifyCode struct {
 	Id        int    `xorm:"pk autoincr"`
 	Email     string `xorm:"varchar(36)"`
 	PhoneNum  string `xorm:"varchar(15)"`
-	Code      string `xorm:"varchar(8)"`
+	Code      string `xorm:"varchar(16)"`
 	Timestamp int    `xorm:"created"`
 }
 

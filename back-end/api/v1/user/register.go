@@ -20,7 +20,8 @@ func Register(c *gin.Context) {
 		libs.Resp(c, -1000, "用户已存在", gin.H{})
 		return
 	}
-	code := libs.RandString(6)
+	code := libs.RandString(16)
+
 	cont := fmt.Sprintf("您的邮箱验证码为: %s", code)
 	go saveUser(&user)
 	go saveCode(code, &user)
