@@ -34,7 +34,7 @@ export default class Index extends React.Component {
           </div>
           <div className={styles['avatar-wrap']}>
             <Avatar size="large" icon="user" className={styles.avatar} />
-            <Dropdown overlay={menu} trigger={['click']}>
+            <Dropdown overlay={menu} trigger={['click','hover']}>
               <a className="ant-dropdown-link" href="#">
                 Hover me
               </a>
