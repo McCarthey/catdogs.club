@@ -20,6 +20,7 @@ var (
 	LogFile      string
 	FromEmail    string
 	EmailPasswd  string
+	ActivateUrl  string
 )
 
 type Common struct {
@@ -35,6 +36,7 @@ type Common struct {
 	TemplateCode string `yaml:"templateCode"`
 	FromEmail    string `yaml:"fromEmail"`
 	EmailPasswd  string `yaml:"emailPasswd"`
+	ActivateUrl  string `yaml:"activateUrl"`
 }
 
 var c *Common
@@ -62,4 +64,5 @@ func initFields() {
 	TemplateCode = c.TemplateCode
 	FromEmail = c.FromEmail
 	EmailPasswd = c.EmailPasswd
+	ActivateUrl = c.ActivateUrl
 }

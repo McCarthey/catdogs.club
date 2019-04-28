@@ -4,6 +4,8 @@ import (
 	"crypto/md5"
 	"fmt"
 
+	configs "catdogs.club/back-end/configs/common"
+
 	"catdogs.club/back-end/libs"
 	"catdogs.club/back-end/models"
 	"github.com/gin-gonic/gin"
@@ -21,8 +23,8 @@ func Register(c *gin.Context) {
 		return
 	}
 	code := libs.RandString(16)
-
-	cont := fmt.Sprintf("您的邮箱验证码为: %s", code)
+	url := configs.ActivateUrl + "?v=" + code
+	cont := fmt.Sprintf("点击链接激活您的账号: %s", url)
 	go saveUser(&user)
 	go saveCode(code, &user)
 	go libs.SendMail(user.Email, "邮箱验证", cont)
