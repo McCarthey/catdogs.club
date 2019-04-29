@@ -1,14 +1,12 @@
-export default {
-  routes: [
-	{ path: '/', component: './a' },
-	{ path: '/list', component: './b', Routes: ['./routes/PrivateRoute.js'] },
+const routes = [
+	{ path: '/', redirect: '/home' },
+	{ path: '/signup', component: './Sign/SignUp' }, // 不能放在路由表末尾
+	{ path: '/signin', component: './Sign/SignIn' }, // 同上  
 	{
-		path: '/users',
-		component: './users/_layout',
-		routes: [
-		{ path: '/users/detail', component: './users/detail' },
-		{ path: '/users/:id', component: './users/id' },
-		],
+		path: '/',
+		component: './_layout',
+		routes: [{ path: '/home', component: './Home' }],
 	},
-  ],
-};
+]
+
+module.exports = routes

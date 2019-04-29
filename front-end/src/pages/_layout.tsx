@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './index.scss'
+import styles from './layout.scss'
 import { Layout, Menu, Avatar, Dropdown } from 'antd'
 const { Header, Footer, Content } = Layout
 
@@ -8,10 +8,12 @@ export default class Index extends React.Component<any, any> {
 		super(props)
 		this.state = {
 			username: 'Admin',
+			isSignIn: false,
 		}
 	}
 
 	render() {
+		console.log(this.props)
 		const menu = (
 			<Menu>
 				<Menu.Item>
@@ -45,16 +47,22 @@ export default class Index extends React.Component<any, any> {
 						</Menu>
 					</div>
 					<div className={styles['avatar-wrap']}>
-						<Dropdown overlay={menu} trigger={['hover']}>
+						{this.state.isSignIn ? (
+							<Dropdown overlay={menu} trigger={['hover']}>
+								<div>
+									<Avatar size="large" icon="user" className={styles.avatar} />
+									<span className={styles.username}>{this.state.username}</span>
+								</div>
+							</Dropdown>
+						) : (
 							<div>
-								<Avatar size="large" icon="user" className={styles.avatar} />
-								<span className={styles.username}>{this.state.username}</span>
+								<span>登录 </span>/<span>注册</span>
 							</div>
-						</Dropdown>
+						)}
 					</div>
 				</Header>
-				<Content>
-					<div style={{ background: '#fff', padding: 24, minHeight: 280 }}>Content</div>
+				<Content style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+					{this.props.children}
 				</Content>
 				<Footer>
 					Catdog s.club ©{new Date().getFullYear()} Created by McCarthey, Yoko
