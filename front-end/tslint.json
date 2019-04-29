@@ -1,0 +1,45 @@
+{
+  "extends": ["tslint:recommended", "tslint-react"],
+  "rules": {
+    "indent": [true, "tabs", 4],
+    "no-console": [false, "log", "error"],
+    "jsx-no-multiline-js": false,
+    "whitespace": false,
+    "no-empty-interface": false,
+    "space-before-function-paren": false,
+    "no-namespace": false,
+    "label-position": false,
+    "quotemark": [true, "single", "jsx-double"],
+    "member-access": false,
+    "semicolon": false,
+    "no-unused-expression": [true, "allow-fast-null-checks"],
+    "member-ordering": false,
+    "trailing-comma": false,
+    "arrow-parens": false,
+    "jsx-self-close": false,
+    "max-line-length": false,
+    "interface-name": false,
+    "no-empty": false,
+    "comment-format": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "eofline": false,
+    "jsx-no-lambda": false,
+    "jsx-no-bind": false,
+    "no-trailing-whitespace": false,
+    "jsx-alignment": false,
+    "jsx-wrap-multilines": false,
+    "no-shadowed-variable": [
+      false,
+      {
+        "class": true,
+        "enum": true,
+        "function": false,
+        "interface": false,
+        "namespace": true,
+        "typeAlias": false,
+        "typeParameter": false
+      }
+    ]
+  }
+}
