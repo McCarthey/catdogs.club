@@ -8,6 +8,11 @@ body {
   margin: 0;
 }
 
+
+.menu-wrap .ant-menu-item {
+  color: #000;
+}
+
 .menu-wrap .ant-menu-item.ant-menu-item-selected {
-  color: #fff;
+  color: #000;
 }
