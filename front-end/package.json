@@ -33,7 +33,7 @@
     "tslint-eslint-rules": "^5.4.0",
     "tslint-react": "^3.6.0",
     "umi": "^2.6.1",
-    "umi-plugin-react": "^1.6.0",
+    "umi-plugin-react": "^1.7.5",
     "umi-types": "^0.2.0"
   },
   "lint-staged": {
