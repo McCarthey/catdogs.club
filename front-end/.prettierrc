@@ -7,5 +7,7 @@
       "files": ".prettierrc",
       "options": { "parser": "json" }
     }
-  ]
+  ],
+  "tabWidth": 4,
+  "semi": false
 }
