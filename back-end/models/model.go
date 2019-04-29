@@ -6,21 +6,21 @@ import (
 	"github.com/go-xorm/xorm"
 )
 
-var db *xorm.Engine
+var Db *xorm.Engine
 
 func InitModel() {
 	var err error
-	db, err = xorm.NewEngine("mysql", configs.DbAddr)
+	Db, err = xorm.NewEngine("mysql", configs.DbAddr)
 	if err != nil {
 		panic(err)
 	}
-	db.SetMaxIdleConns(configs.IdleConns)
-	db.SetMaxOpenConns(configs.OpenConns)
+	Db.SetMaxIdleConns(configs.IdleConns)
+	Db.SetMaxOpenConns(configs.OpenConns)
 
 	initTables()
 }
 
 func initTables() {
-	db.Sync2(new(User))
-	db.Sync2(new(VerifyCode))
+	Db.Sync2(new(User))
+	Db.Sync2(new(VerifyCode))
 }

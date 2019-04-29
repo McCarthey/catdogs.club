@@ -16,17 +16,13 @@ type User struct {
 }
 
 func (u *User) Set() error {
-	_, err := db.Insert(u)
+	_, err := Db.Insert(u)
 	return err
 }
 
 func (u *User) Get() (has bool, err error) {
-	has, err = db.Get(u)
+	has, err = Db.Get(u)
 	return
-}
-
-func UpdateByEmail(u *User) {
-	db.Id(u.Id).Update(&u)
 }
 
 type VerifyCode struct {
@@ -38,11 +34,11 @@ type VerifyCode struct {
 }
 
 func (v *VerifyCode) Set() error {
-	_, err := db.Insert(v)
+	_, err := Db.Insert(v)
 	return err
 }
 
 func (v *VerifyCode) Get() (has bool, err error) {
-	has, err = db.Get(v)
+	has, err = Db.Get(v)
 	return
 }

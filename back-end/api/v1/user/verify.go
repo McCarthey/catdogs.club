@@ -16,26 +16,19 @@ func Verify(c *gin.Context) {
 	if err != nil {
 		logger.Error(err)
 	}
+	logger.Info("v param", vparam)
 	v := models.VerifyCode{
 		Code: vparam.V,
 	}
 	has, err := v.Get()
+	logger.Info("verify code: ", v)
 	if has {
-		updateUserFlag(&v)
+		sql := "update user set flags=flags|? where email=?;"
+		_, err := models.Db.Exec(sql, models.IsActivate, v.Email)
+		if err != nil {
+			c.String(0, err.Error(), "")
+			return
+		}
 	}
 	c.String(0, "账号激活成功", "")
-}
-
-func updateUserFlag(v *models.VerifyCode) {
-	u := models.User{
-		Email: v.Email,
-	}
-	has, err := u.Get()
-	if err != nil {
-		logger.Error(err)
-	}
-	if has {
-		u.Flags |= models.IsActivate
-		models.UpdateByEmail(&u)
-	}
 }
