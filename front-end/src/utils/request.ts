@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch'
+import {message} from 'antd'
 
 function checkStatus(response: { status: number; statusText: string | undefined }) {
     if (response.status >= 200 && response.status < 300) {
@@ -17,7 +18,7 @@ function checkStatus(response: { status: number; statusText: string | undefined 
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default async function request(url: string, options: any) {
+export default async function request(url: string, options: any, toast=true) {
     const response = await fetch(url, options)
 
     checkStatus(response)
@@ -29,5 +30,10 @@ export default async function request(url: string, options: any) {
         headers: {},
     }
 
-    return ret
+    // 如果错误码 !== 0 默认弹出 toast
+    if (toast && ret.data && ret.data.code !== 0) {
+        message.error(ret.data.msg)
+    }
+
+    return ret.data
 }

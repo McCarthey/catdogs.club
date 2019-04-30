@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import styles from './style.scss'
 
-import  api_sign from '@/services/sign'
+import api_sign from '@/services/sign'
 
 import { SignUpReq } from '@/types/sign'
 
@@ -11,12 +11,16 @@ class SignUp extends React.Component<any, any> {
         super(props)
     }
 
-    handleSubmit = (e: any) => {
+    handleSignUp = (e: any) => {
         e.preventDefault()
         this.props.form.validateFields(async (err: any, values: SignUpReq) => {
             if (!err) {
-                const res = await api_sign.signUpByEmail(values)
-                console.log('ressss',res)
+                try {
+                    const res = await api_sign.signUpByEmail(values)
+                    console.log('ressss', res)
+                } catch (e) {
+                    console.log(e)
+                }
             }
         })
     }
@@ -24,7 +28,7 @@ class SignUp extends React.Component<any, any> {
     render() {
         const { getFieldDecorator } = this.props.form
         return (
-            <Form onSubmit={this.handleSubmit} className={styles['login-form']}>
+            <Form onSubmit={this.handleSignUp} className={styles['login-form']}>
                 <Form.Item>
                     {getFieldDecorator('email', {
                         rules: [{ required: true, message: 'Please input your username!' }],
