@@ -1,5 +1,6 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button } from 'antd'
+import Link from 'umi/link'
 import styles from './style.scss'
 
 import api_sign from '@/services/sign'
@@ -18,8 +19,9 @@ class SignUp extends React.Component<any, any> {
                 try {
                     const res = await api_sign.signUpByEmail(values)
                     console.log('ressss', res)
+                    // TODO: 注册成功后提示去邮箱激活
                 } catch (e) {
-                    console.log(e)
+                    console.log('error code:', e.code)
                 }
             }
         })
@@ -58,7 +60,7 @@ class SignUp extends React.Component<any, any> {
                     >
                         注册
                     </Button>
-                    已有帐号？ <a href="/signin">即刻登录</a>
+                    已有帐号？ <Link to="/sign/signin">即刻登录</Link>
                 </Form.Item>
             </Form>
         )

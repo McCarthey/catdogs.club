@@ -33,6 +33,7 @@ export default async function request(url: string, options: any, toast=true) {
     // 如果错误码 !== 0 默认弹出 toast
     if (toast && ret.data && ret.data.code !== 0) {
         message.error(ret.data.msg)
+        throw ret.data
     }
 
     return ret.data

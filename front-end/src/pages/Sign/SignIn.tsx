@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import Link from 'umi/link';
 import styles from './style.scss'
 
 class SignUp extends React.Component<any, any> {
@@ -47,13 +48,13 @@ class SignUp extends React.Component<any, any> {
 						valuePropName: 'checked',
 						initialValue: true,
 					})(<Checkbox>记住密码</Checkbox>)}
-					<a className={styles['login-form-forgot']} href="/signup">
+					<Link className={styles['login-form-forgot']} to="">
 						忘记密码
-					</a>
+					</Link>
 					<Button type="primary" htmlType="submit" className={styles['login-form-button']}>
-						Log in
+						登录
 					</Button>
-					<a href="/signup">立即注册</a>
+					<Link to="/sign/signup">立即注册</Link>
 				</Form.Item>
 			</Form>
 		)
