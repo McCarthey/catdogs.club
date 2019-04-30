@@ -1,5 +1,5 @@
 const routes = [
-    { path: '/', redirect: '/home' },
+    { path: '/', redirect: '/home', exact: true },
     {
         path: '/sign',
         component: './Sign/_layout',
@@ -21,7 +21,10 @@ const routes = [
                 component: './About',
             },
         ],
-    },
+	},
+	{
+		path: '*',component: './Page404'
+	}
 ]
 
 module.exports = routes

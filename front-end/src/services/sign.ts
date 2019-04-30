@@ -14,6 +14,20 @@ function signUpByEmail({ email, password }: SignUpReq) {
     })
 }
 
+function signInByEmail({ email, password}: SignUpReq) {
+    return httpRequester('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            password,
+        }),
+    })
+}
+
 export default {
     signUpByEmail,
+    signInByEmail
 }
