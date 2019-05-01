@@ -1,86 +1,70 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button } from 'antd'
+import Link from 'umi/link'
 import styles from './style.scss'
 
-import request from '@/utils/request'
+import api_sign from '@/services/sign'
+
+import { SignUpReq } from '@/types/sign'
 
 class SignUp extends React.Component<any, any> {
-	constructor(props: any) {
-		super(props)
-		this.state = {
-			email: '',
-			password: '',
-		}
-	}
+    constructor(props: any) {
+        super(props)
+    }
 
-	handleChange = (name: string) => (e: any) => {
-		this.setState({
-			[name]: e.target.value,
-		})
-	}
+    handleSignUp = (e: any) => {
+        e.preventDefault()
+        this.props.form.validateFields(async (err: any, values: SignUpReq) => {
+            if (!err) {
+                try {
+                    const res = await api_sign.signUpByEmail(values)
+                    console.log('ressss', res)
+                    // TODO: 注册成功后提示去邮箱激活
+                } catch (e) {
+                    console.log('error code:', e.code)
+                }
+            }
+        })
+    }
 
-	handleSubmit = (e: any) => {
-		e.preventDefault()
-		this.props.form.validateFields((err: any, values: any) => {
-			if (!err) {
-				const { email, password } = this.state
-				// TODO: 脱离dva简单实验fetch
-				request('/api/register', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					body: JSON.stringify({
-						email,
-						password,
-					}),
-				})
-			}
-		})
-	}
-
-	render() {
-		const { getFieldDecorator } = this.props.form
-		return (
-			<Form onSubmit={this.handleSubmit} className={styles['login-form']}>
-				<Form.Item>
-					{getFieldDecorator('userName', {
-						rules: [{ required: true, message: 'Please input your username!' }],
-					})(
-						<Input
-							prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-							placeholder="邮箱"
-							value={this.state.email}
-							onChange={this.handleChange('email')}
-						/>,
-					)}
-				</Form.Item>
-				<Form.Item>
-					{getFieldDecorator('password', {
-						rules: [{ required: true, message: 'Please input your Password!' }],
-					})(
-						<Input
-							prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-							type="password"
-							placeholder="密码"
-							value={this.state.password}
-							onChange={this.handleChange('password')}
-						/>,
-					)}
-				</Form.Item>
-				<Form.Item>
-					<Button
-						type="primary"
-						htmlType="submit"
-						className={styles['login-form-button']}
-					>
-						注册
-					</Button>
-					已有帐号？ <a href="/signin">即刻登录</a>
-				</Form.Item>
-			</Form>
-		)
-	}
+    render() {
+        const { getFieldDecorator } = this.props.form
+        return (
+            <Form onSubmit={this.handleSignUp} className={styles['login-form']}>
+                <Form.Item>
+                    {getFieldDecorator('email', {
+                        rules: [{ required: true, message: 'Please input your username!' }],
+                    })(
+                        <Input
+                            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            placeholder="邮箱"
+                        />,
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('password', {
+                        rules: [{ required: true, message: 'Please input your Password!' }],
+                    })(
+                        <Input
+                            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+                            type="password"
+                            placeholder="密码"
+                        />,
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        className={styles['login-form-button']}
+                    >
+                        注册
+                    </Button>
+                    已有帐号？ <Link to="/sign/signin">即刻登录</Link>
+                </Form.Item>
+            </Form>
+        )
+    }
 }
 
 const WrappedSignUpForm = Form.create({ name: 'normal_login' })(SignUp)

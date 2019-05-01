@@ -1,6 +1,10 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Icon, Input, Button, Checkbox,message } from 'antd'
+import Link from 'umi/link';
 import styles from './style.scss'
+
+import api_sign from '@/services/sign'
+import { SignUpReq } from '@/types/sign'
 
 class SignUp extends React.Component<any, any> {
 	constructor(props: any) {
@@ -10,10 +14,16 @@ class SignUp extends React.Component<any, any> {
 
 	handleSubmit = (e: any) => {
 		e.preventDefault()
-		this.props.form.validateFields((err: any, values: any) => {
+		this.props.form.validateFields(async (err: any, values: any) => {
 			if (!err) {
-				console.log('Received values of form: ', values)
-			}
+                try {
+					const res = await api_sign.signInByEmail(values)
+					message.success('登录成功')
+                    console.log('ressss', res)
+                } catch (e) {
+                    console.log('error code:', e.code)
+                }
+            }
 		})
 	}
 
@@ -22,7 +32,7 @@ class SignUp extends React.Component<any, any> {
 		return (
 			<Form onSubmit={this.handleSubmit} className={styles['login-form']}>
 				<Form.Item>
-					{getFieldDecorator('userName', {
+					{getFieldDecorator('email', {
 						rules: [{ required: true, message: 'Please input your username!' }],
 					})(
 						<Input
@@ -47,13 +57,13 @@ class SignUp extends React.Component<any, any> {
 						valuePropName: 'checked',
 						initialValue: true,
 					})(<Checkbox>记住密码</Checkbox>)}
-					<a className={styles['login-form-forgot']} href="/signup">
+					<Link className={styles['login-form-forgot']} to="">
 						忘记密码
-					</a>
+					</Link>
 					<Button type="primary" htmlType="submit" className={styles['login-form-button']}>
-						Log in
+						登录
 					</Button>
-					<a href="/signup">立即注册</a>
+					<Link to="/sign/signup">立即注册</Link>
 				</Form.Item>
 			</Form>
 		)
