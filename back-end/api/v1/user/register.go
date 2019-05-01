@@ -4,8 +4,9 @@ import (
 	"crypto/md5"
 	"fmt"
 
-	configs "catdogs.club/back-end/configs/common"
+	"catdogs.club/back-end/logger"
 
+	configs "catdogs.club/back-end/configs/common"
 	"catdogs.club/back-end/libs"
 	"catdogs.club/back-end/models"
 	"github.com/gin-gonic/gin"
@@ -15,6 +16,7 @@ func Register(c *gin.Context) {
 	var user User
 	if err := c.ShouldBind(&user); err != nil {
 		fmt.Println(err)
+		logger.Info("bind user err", err.Error())
 	}
 
 	has := verifyUser(&user)

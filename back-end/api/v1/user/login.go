@@ -19,6 +19,7 @@ func Login(c *gin.Context) {
 	var user User
 	if err := c.ShouldBind(&user); err != nil {
 		fmt.Println(err.Error())
+		logger.Info("bind user err", err.Error())
 	}
 	u := models.User{
 		Email: user.Email,
@@ -26,6 +27,7 @@ func Login(c *gin.Context) {
 	logger.Info(u)
 	has, err := u.Get()
 	fmt.Println(err)
+	logger.Info("get user err", err.Error())
 	if !has {
 		libs.Resp(c, -1002, "用户不存在", gin.H{})
 		return
