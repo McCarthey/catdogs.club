@@ -21,7 +21,11 @@ func Register(c *gin.Context) {
 
 	has := verifyUser(&user)
 	if has {
-		libs.Resp(c, -1000, "用户已存在", gin.H{})
+		libs.Resp(libs.R{
+			C:    c,
+			Code: -1000,
+			Msg:  "用户已存在",
+		})
 		return
 	}
 	code := libs.RandString(16)
@@ -30,7 +34,11 @@ func Register(c *gin.Context) {
 	go saveUser(&user)
 	go saveCode(code, &user)
 	go libs.SendMail(user.Email, "邮箱验证", cont)
-	libs.Resp(c, 0, "success", gin.H{})
+	libs.Resp(libs.R{
+		C:    c,
+		Code: 0,
+		Msg:  "success",
+	})
 }
 
 func saveCode(code string, param *User) {

@@ -6,5 +6,9 @@ import (
 )
 
 func GetUser(c *gin.Context) {
-	libs.Resp(c, 0, "success", gin.H{})
+	libs.Resp(libs.R{
+		C:    c,
+		Msg:  "success",
+		Code: 0,
+	})
 }

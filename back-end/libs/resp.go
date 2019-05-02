@@ -6,10 +6,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Resp(c *gin.Context, code int, msg string, data gin.H) {
-	c.JSON(http.StatusOK, gin.H{
-		"code": code,
-		"msg":  msg,
-		"data": data,
+type R struct {
+	C    *gin.Context
+	Code int
+	Msg  string
+	Data gin.H
+}
+
+func Resp(r R) {
+	if r.Data == nil {
+		r.Data = gin.H{}
+	}
+	r.C.JSON(http.StatusOK, gin.H{
+		"code": r.Code,
+		"msg":  r.Msg,
+		"data": r.Data,
 	})
 }

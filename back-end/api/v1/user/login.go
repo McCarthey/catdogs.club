@@ -29,14 +29,26 @@ func Login(c *gin.Context) {
 	fmt.Println(err)
 	logger.Info("get user err", err.Error())
 	if !has {
-		libs.Resp(c, -1002, "用户不存在", gin.H{})
+		libs.Resp(libs.R{
+			C:    c,
+			Code: -1002,
+			Msg:  "用户不存在",
+		})
 		return
 	}
 	pwd := md5.Sum([]byte(user.Password))
 	pwdHex := fmt.Sprintf("%x", pwd)
 	if pwdHex != u.Password {
-		libs.Resp(c, -1003, "密码错误", gin.H{})
+		libs.Resp(libs.R{
+			C:    c,
+			Code: -1003,
+			Msg:  "密码错误",
+		})
 		return
 	}
-	libs.Resp(c, 0, "登录成功", gin.H{})
+	libs.Resp(libs.R{
+		C:    c,
+		Code: 0,
+		Msg:  "登录成功",
+	})
 }
