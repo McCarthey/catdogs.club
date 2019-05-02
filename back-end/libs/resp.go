@@ -17,6 +17,9 @@ func Resp(r R) {
 	if r.Data == nil {
 		r.Data = gin.H{}
 	}
+	if r.Msg == "" {
+		r.Msg = codes[r.Code]
+	}
 	r.C.JSON(http.StatusOK, gin.H{
 		"code": r.Code,
 		"msg":  r.Msg,

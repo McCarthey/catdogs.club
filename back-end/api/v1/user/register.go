@@ -24,7 +24,6 @@ func Register(c *gin.Context) {
 		libs.Resp(libs.R{
 			C:    c,
 			Code: -1000,
-			Msg:  "用户已存在",
 		})
 		return
 	}
@@ -37,7 +36,6 @@ func Register(c *gin.Context) {
 	libs.Resp(libs.R{
 		C:    c,
 		Code: 0,
-		Msg:  "success",
 	})
 }
 

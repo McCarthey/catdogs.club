@@ -27,12 +27,17 @@ func Login(c *gin.Context) {
 	logger.Info(u)
 	has, err := u.Get()
 	fmt.Println(err)
+	if err != nil {
+		libs.Resp(libs.R{
+			C:    c,
+			Code: -999,
+		})
+	}
 	logger.Info("get user err", err.Error())
 	if !has {
 		libs.Resp(libs.R{
 			C:    c,
 			Code: -1002,
-			Msg:  "用户不存在",
 		})
 		return
 	}
@@ -42,7 +47,6 @@ func Login(c *gin.Context) {
 		libs.Resp(libs.R{
 			C:    c,
 			Code: -1003,
-			Msg:  "密码错误",
 		})
 		return
 	}
