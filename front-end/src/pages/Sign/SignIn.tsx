@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox,message } from 'antd'
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd'
 import Link from 'umi/link';
 import styles from './style.scss'
 
@@ -16,14 +16,14 @@ class SignUp extends React.Component<any, any> {
 		e.preventDefault()
 		this.props.form.validateFields(async (err: any, values: any) => {
 			if (!err) {
-                try {
+				try {
 					const res = await api_sign.signInByEmail(values)
 					message.success('登录成功')
-                    console.log('ressss', res)
-                } catch (e) {
-                    console.log('error code:', e.code)
-                }
-            }
+					console.log('ressss', res)
+				} catch (e) {
+					console.log('error code:', e.code)
+				}
+			}
 		})
 	}
 
