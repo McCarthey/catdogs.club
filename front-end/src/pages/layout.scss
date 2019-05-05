@@ -1,11 +1,13 @@
 .normal {
     font-family: sans-serif;
+    background: #fff;
 }
 
 .header {
     display: flex;
     background-color: #fff;
     justify-content: space-between;
+    z-index: 9;
 }
 
 .menu-wrap {

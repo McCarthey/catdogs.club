@@ -33,7 +33,7 @@ class SignUp extends React.Component<any, any> {
 			<Form onSubmit={this.handleSubmit} className={styles['login-form']}>
 				<Form.Item>
 					{getFieldDecorator('email', {
-						rules: [{ required: true, message: 'Please input your username!' }],
+						rules: [{ required: true, message: '请输入邮箱' }],
 					})(
 						<Input
 							prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -43,7 +43,7 @@ class SignUp extends React.Component<any, any> {
 				</Form.Item>
 				<Form.Item>
 					{getFieldDecorator('password', {
-						rules: [{ required: true, message: 'Please input your Password!' }],
+						rules: [{ required: true, message: '请输入密码' }],
 					})(
 						<Input
 							prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
