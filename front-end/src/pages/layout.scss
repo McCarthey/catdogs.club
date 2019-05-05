@@ -1,50 +1,50 @@
 .normal {
-  font-family: Georgia, sans-serif;
+    font-family: sans-serif;
 }
 
 .header {
-  display: flex;
-  background-color: #fff;
-  justify-content: space-between;
+    display: flex;
+    background-color: #fff;
+    justify-content: space-between;
 }
 
 .menu-wrap {
-  background-color: transparent;
-  .ant-menu-submenu .ant-menu-submenu-horizontal .ant-menu-overflowed-submenu {
-    color: #fff !important;
-  }
-  .ant-menu-item-selected {
-    color: #fff !important;
-  }
+    background-color: transparent;
+    .ant-menu-submenu .ant-menu-submenu-horizontal .ant-menu-overflowed-submenu {
+        color: #fff !important;
+    }
+    .ant-menu-item-selected {
+        color: #fff !important;
+    }
 }
 
 .avatar-wrap {
-  cursor: pointer;
-  line-height: 64px;
+    cursor: pointer;
+    line-height: 64px;
 }
 
 .list {
-  font-size: 1.2em;
-  margin-top: 1.8em;
-  list-style: none;
-  line-height: 1.5em;
+    font-size: 1.2em;
+    margin-top: 1.8em;
+    list-style: none;
+    line-height: 1.5em;
 }
 
 .list code {
-  background: #f7f7f7;
+    background: #f7f7f7;
 }
 
 .username {
-  cursor: pointer;
-  margin-left: 10px;
+    cursor: pointer;
+    margin-left: 10px;
 }
 
 /* 退出登录 */
 .logout {
-  &:hover {
-    a {
-      color: #fff;
+    &:hover {
+        a {
+            color: #fff;
+        }
+        background-color: $danger-color !important;
     }
-    background-color: $danger-color !important;
-  }
 }

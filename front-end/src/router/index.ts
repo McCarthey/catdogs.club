@@ -1,11 +1,10 @@
 const routes = [
-    { path: '/', redirect: '/home', exact: true },
     {
         path: '/sign',
-        component: './Sign/_layout',
+        component: './sign/_layout',
         routes: [
-            { path: '/sign/signup', component: './Sign/SignUp' }, // 不能放在路由表末尾
-            { path: '/sign/signin', component: './Sign/SignIn' }, // 同上
+            { path: '/sign/signup', component: './sign/signUp' }, // 不能放在路由表末尾
+            { path: '/sign/signin', component: './sign/signIn' }, // 同上
         ],
     },
     {
@@ -13,18 +12,23 @@ const routes = [
         component: './_layout',
         routes: [
             {
-                path: '/home',
-                component: './Home',
+                path: '/news',
+                component: './news',
             },
             {
-                ptah: '/about',
-                component: './About',
+                path: '/home',
+                component: './home',
+            },
+            {
+                path: '/forum',
+                component: './forum',
             },
         ],
-	},
-	{
-		path: '*',component: './Page404'
-	}
+    },
+    {
+        path: '*',
+        component: './page404',
+    },
 ]
 
 module.exports = routes

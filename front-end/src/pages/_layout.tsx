@@ -42,9 +42,9 @@ export default class Index extends React.Component<any, any> {
 							style={{ lineHeight: '64px', color: '#fff' }}
 							className={'menu-wrap ' + styles['menu-wrap']}
 						>
-							<Menu.Item key="1"><Link to="/home">Home</Link></Menu.Item>
-							<Menu.Item key="2"><Link to="/about">About</Link></Menu.Item>
-							<Menu.Item key="3">nav 3</Menu.Item>
+							<Menu.Item key="1"><Link to="/home">首页</Link></Menu.Item>
+							<Menu.Item key="2"><Link to="/forum">论坛</Link></Menu.Item>
+							<Menu.Item key="3"><Link to="/news">资讯</Link></Menu.Item>
 						</Menu>
 					</div>
 					<div className={styles['avatar-wrap']}>
