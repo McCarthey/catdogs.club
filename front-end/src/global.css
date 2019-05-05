@@ -20,11 +20,22 @@ body {
 .fade-enter {
     opacity: 0;
     z-index: 1;
-    transform: scale(0.9);
+    transform: scale(1.1);
 }
 
 .fade-enter.fade-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: .25s ease-in;
+    transition: opacity .3s ease-in, transform .3s;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: scale(0.1);
+  transition: opacity .3s, transform .3s;
 }
