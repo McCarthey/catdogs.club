@@ -3,7 +3,8 @@
   "scripts": {
     "start": "umi dev",
     "build": "umi build",
-    "test": "umi test"
+    "test": "umi test",
+    "lint": "tslint --fix ./src/*.tsx"
   },
   "dependencies": {
     "antd": "^3.15.0",
