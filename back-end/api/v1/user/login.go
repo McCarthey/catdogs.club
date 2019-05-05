@@ -24,7 +24,7 @@ func Login(c *gin.Context) {
 	u := models.User{
 		Email: user.Email,
 	}
-	logger.Info(u)
+	// logger.Info(u)
 	has, err := u.Get()
 	fmt.Println(err)
 	if err != nil {
@@ -33,7 +33,7 @@ func Login(c *gin.Context) {
 			Code: -999,
 		})
 	}
-	logger.Info("get user err", err.Error())
+	// logger.Info("get user err", err.Error())
 	if !has {
 		libs.Resp(libs.R{
 			C:    c,
