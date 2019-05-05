@@ -14,7 +14,7 @@ class SignUp extends React.Component<any, any> {
 
 	handleSubmit = (e: any) => {
 		e.preventDefault()
-		this.props.form.validateFields(async (err: any, values: any) => {
+		this.props.form.validateFields(async (err: any, values: SignUpReq) => {
 			if (!err) {
 				try {
 					const res = await api_sign.signInByEmail(values)
