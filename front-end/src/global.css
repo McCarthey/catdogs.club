@@ -1,18 +1,30 @@
 html,
 body,
 #root {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
-
 .menu-wrap .ant-menu-item {
-  color: #000;
+    color: #000;
 }
 
 .menu-wrap .ant-menu-item.ant-menu-item-selected {
-  color: #000;
+    color: #000;
+}
+
+/* 路由动效 */
+.fade-enter {
+    opacity: 0;
+    z-index: 1;
+    transform: scale(0.9);
+}
+
+.fade-enter.fade-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: .25s ease-in;
 }

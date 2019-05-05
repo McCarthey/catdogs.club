@@ -2,6 +2,8 @@ import React from 'react'
 import styles from './layout.scss'
 import { Layout, Menu, Avatar, Dropdown } from 'antd'
 import Link from 'umi/link'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
+
 const { Header, Footer, Content } = Layout
 const routes = require('../router')
 
@@ -44,8 +46,8 @@ export default class Index extends React.Component<any, any> {
                     )
                 ].path
         } catch (e) {
-			defaultSelectedKeys = ''
-		}
+            defaultSelectedKeys = ''
+        }
 
         return (
             <Layout className={styles.normal}>
@@ -85,9 +87,13 @@ export default class Index extends React.Component<any, any> {
                         )}
                     </div>
                 </Header>
-                <Content style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                    {this.props.children}
-                </Content>
+                <TransitionGroup exit={false}>
+                    <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
+                        <Content style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+                            {this.props.children}
+                        </Content>
+                    </CSSTransition>
+                </TransitionGroup>
                 <Footer>
                     Catdog s.club ©{new Date().getFullYear()} Created by McCarthey, Yoko
                 </Footer>
