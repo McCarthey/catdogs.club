@@ -1,7 +1,7 @@
 package user
 
 import (
-	"catdogs.club/back-end/logger"
+	"catdogs.club/back-end/logging"
 	"catdogs.club/back-end/models"
 	"github.com/gin-gonic/gin"
 )
@@ -14,14 +14,14 @@ func Verify(c *gin.Context) {
 	var vparam VParam
 	err := c.ShouldBind(vparam)
 	if err != nil {
-		logger.Error(err)
+		logging.Error(err)
 	}
-	logger.Info("v param", vparam)
+	logging.Info("v param", vparam)
 	v := models.VerifyCode{
 		Code: vparam.V,
 	}
 	has, err := v.Get()
-	logger.Info("verify code: ", v)
+	logging.Info("verify code: ", v)
 	if has {
 		sql := "update user set flags=flags|? where email=?;"
 		_, err := models.Db.Exec(sql, models.IsActivate, v.Email)
