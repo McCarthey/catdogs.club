@@ -21,7 +21,11 @@ func SendSms(c *gin.Context) {
 	code := libs.RandInt(4)
 	go libs.SendSms(smsParam.PhoneNum, code)
 	go saveCode(&smsParam, code)
-	libs.Resp(c, 0, "success", gin.H{})
+	libs.Resp(libs.R{
+		C:    c,
+		Code: 0,
+		Msg:  "success",
+	})
 }
 
 func saveCode(param *SmsParam, code string) {
