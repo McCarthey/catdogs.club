@@ -31,10 +31,7 @@ func Register(c *gin.Context) {
 	cont := fmt.Sprintf("点击链接激活您的账号: %s", url)
 	go saveUser(&user)
 	go saveCode(code, &user)
-	err := libs.SendMail(user.Email, "邮箱验证", cont)
-	if err != nil {
-		logging.Error("发送邮箱验证错误: ", err)
-	}
+	go libs.SendMail(user.Email, "邮箱激活验证", cont)
 	libs.Resp(libs.R{
 		C:    c,
 		Code: 0,
