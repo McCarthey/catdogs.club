@@ -3,6 +3,7 @@ const routes = require('./src/router')
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
+	outputPath: './catdogs',
 	treeShaking: true,
 	routes,
 	urlLoaderExcludes: [/.scss$/],

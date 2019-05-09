@@ -9,6 +9,7 @@
 
 # production
 /dist
+/catdogs
 
 # misc
 .DS_Store

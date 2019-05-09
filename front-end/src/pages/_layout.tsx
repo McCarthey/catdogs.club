@@ -95,7 +95,7 @@ export default class Index extends React.Component<any, any> {
                     </CSSTransition>
                 </TransitionGroup>
                 <Footer>
-                    Catdog s.club ©{new Date().getFullYear()} Created by McCarthey, Yoko
+                    Catdogs.club ©{new Date().getFullYear()} Created by McCarthey, Yoko
                 </Footer>
             </Layout>
         )

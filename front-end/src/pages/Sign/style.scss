@@ -1,3 +1,13 @@
+.sign-page-header {
+    height: 64px;
+    a { 
+        display: inline-block;
+        line-height: 64px;
+        height: 64px;
+        width: 120px;
+    }
+}
+
 .login-form {
     max-width: 300px;
     margin: 0 auto;
