@@ -7,7 +7,7 @@ cp -r ./catdogs ../../web-build &&
 cd ../../web-build &&
 git pull &&
 git add . &&
-git commit -m '$commitStr' &&
+git commit -m "$commitStr" &&
 git push &&
 curl 'http://118.24.146.34:3001/'
-
+echo 'deploy done! You can refresh http://118.24.146.34 now to see your changes'
