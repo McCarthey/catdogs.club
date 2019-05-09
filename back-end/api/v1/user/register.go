@@ -3,6 +3,7 @@ package user
 import (
 	"crypto/md5"
 	"fmt"
+	"strconv"
 
 	configs "catdogs.club/back-end/configs/common"
 	"catdogs.club/back-end/libs"
@@ -53,13 +54,35 @@ func saveCode(code string, param *User) {
 func saveUser(param *User) {
 	pwData := md5.Sum([]byte(param.Password))
 	pwS := fmt.Sprintf("%x", pwData)
+	session := models.Db.NewSession()
+	defer session.Close()
+	err := session.Begin()
 	u := models.User{
 		Email:    param.Email,
 		Password: pwS,
 	}
-	err := u.Set()
+	err = u.Set()
 	if err != nil {
 		fmt.Println(err)
+		logging.Error("save user error: ", err)
+		session.Rollback()
+		return
+	}
+	logging.Info("insert id: ", u.Id, "email: ", u.Email)
+	// 生成openid
+	strId := strconv.Itoa(u.Id)
+	openid := libs.AESEncrypt(strId)
+	newu := models.User{Openid: openid}
+	_, err = session.Id(u.Id).Update(newu)
+	if err != nil {
+		logging.Error("update openid error: ", err)
+		session.Rollback()
+		return
+	}
+	err = session.Commit()
+	if err != nil {
+		logging.Error("save user commit error: ", err)
+		return
 	}
 }
 
