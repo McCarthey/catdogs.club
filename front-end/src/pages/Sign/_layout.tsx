@@ -7,7 +7,7 @@ export default function Sign(props: any) {
     return (
         <div>
             <div className={styles['sign-page-header']}>
-                <Link to='/home'>Logo test</Link>
+                <Link to='/home'>Logo</Link>
             </div>
             <TransitionGroup exit={false}>
                 <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
