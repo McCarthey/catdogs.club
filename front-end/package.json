@@ -4,14 +4,16 @@
     "start": "umi dev",
     "build": "umi build",
     "test": "umi test",
-    "lint": "tslint --fix ./src/*.tsx"
+    "lint": "tslint --fix ./src/*.tsx",
+    "deploy": "bash ./deploy.sh"
   },
   "dependencies": {
     "antd": "^3.16.6",
     "dva": "^2.5.0-beta.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-transition-group": "^4.0.0"
+    "react-transition-group": "^4.0.0",
+    "styled-jsx": "^3.2.1"
   },
   "devDependencies": {
     "@types/jest": "^23.3.12",
@@ -19,6 +21,7 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-test-renderer": "^16.0.3",
     "@types/react-transition-group": "^2.9.1",
+    "@types/styled-jsx": "^2.2.8",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.4.0",
     "eslint-config-umi": "^1.4.0",

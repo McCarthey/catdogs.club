@@ -3,6 +3,7 @@ const routes = require('./src/router')
 
 // ref: https://umijs.org/config/
 const config: IConfig = {
+	outputPath: './catdogs',
 	treeShaking: true,
 	routes,
 	urlLoaderExcludes: [/.scss$/],
@@ -17,7 +18,7 @@ const config: IConfig = {
 	},
 	proxy: {
 		'/api': {
-			target: 'http://129.204.46.253:8888/api',
+			target: 'http://118.24.146.34:8888/api',
 			changeOrigin: true,
 			pathRewrite: { '^/api': '/' },
 		},
