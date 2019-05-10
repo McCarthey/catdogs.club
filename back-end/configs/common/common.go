@@ -22,6 +22,7 @@ var (
 	EmailPasswd  string
 	ActivateUrl  string
 	AesKey       string
+	PwSalt       string
 )
 
 type Common struct {
@@ -39,6 +40,7 @@ type Common struct {
 	EmailPasswd  string `yaml:"emailPasswd"`
 	ActivateUrl  string `yaml:"activateUrl"`
 	AesKey       string `yaml:"aesKey"`
+	PwSalt       string `yaml:"pwSalt"`
 }
 
 var c *Common
@@ -68,4 +70,5 @@ func initFields() {
 	EmailPasswd = c.EmailPasswd
 	ActivateUrl = c.ActivateUrl
 	AesKey = c.AesKey
+	PwSalt = c.PwSalt
 }

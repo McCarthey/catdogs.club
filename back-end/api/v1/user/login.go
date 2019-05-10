@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"fmt"
 
+	configs "catdogs.club/back-end/configs/common"
 	"catdogs.club/back-end/libs"
 	"catdogs.club/back-end/logging"
 	"catdogs.club/back-end/models"
@@ -42,7 +43,7 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
-	pwd := md5.Sum([]byte(user.Password))
+	pwd := md5.Sum([]byte(user.Password + configs.PwSalt))
 	pwdHex := fmt.Sprintf("%x", pwd)
 	if pwdHex != u.Password {
 		libs.Resp(libs.R{

@@ -52,14 +52,14 @@ func saveCode(code string, param *User) {
 
 // 保存用户到数据库
 func saveUser(param *User) {
-	pwData := md5.Sum([]byte(param.Password))
-	pwS := fmt.Sprintf("%x", pwData)
+	pwData := md5.Sum([]byte(param.Password + configs.PwSalt))
+	pwHex := fmt.Sprintf("%x", pwData)
 	session := models.Db.NewSession()
 	defer session.Close()
 	err := session.Begin()
 	u := models.User{
 		Email:    param.Email,
-		Password: pwS,
+		Password: pwHex,
 	}
 	err = u.Set()
 	if err != nil {
