@@ -28,6 +28,10 @@ const routes = [
                 component: './tutorial',
             },
             {
+                path: '/',
+                redirect: '/home',
+            },
+            {
                 path: '*',
                 component: './page404',
             },
