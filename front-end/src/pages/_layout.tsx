@@ -63,11 +63,14 @@ export default class Index extends React.Component<any, any> {
                             <Menu.Item key="/home">
                                 <Link to="/home">首页</Link>
                             </Menu.Item>
-                            <Menu.Item key="/forum">
-                                <Link to="/forum">论坛</Link>
+                            <Menu.Item key="/tutorial">
+                                <Link to="/tutorial">教程</Link>
                             </Menu.Item>
                             <Menu.Item key="/news">
                                 <Link to="/news">资讯</Link>
+                            </Menu.Item>
+                            <Menu.Item key="/forum">
+                                <Link to="/forum">论坛</Link>
                             </Menu.Item>
                         </Menu>
                     </div>

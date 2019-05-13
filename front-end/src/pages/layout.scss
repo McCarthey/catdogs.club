@@ -1,4 +1,5 @@
 .normal {
+    overflow: hidden;
     font-family: sans-serif;
     background: #fff;
 }
@@ -8,6 +9,9 @@
     background-color: #fff;
     justify-content: space-between;
     z-index: 9;
+    @media screen and (max-width: 480px) {
+        padding: 0;
+    }
 }
 
 .menu-wrap {
@@ -39,6 +43,10 @@
 .username {
     cursor: pointer;
     margin-left: 10px;
+}
+
+footer {
+    z-index: 2;
 }
 
 /* 退出登录 */
