@@ -1,0 +1,15 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "CatDogs API 文档",
+        "title": "CatDogs API",
+        "contact": {
+            "name": "Yoko"
+        },
+        "license": {},
+        "version": "1.0"
+    },
+    "host": "{{.Host}}",
+    "basePath": "/api/v1",
+    "paths": {}
+}

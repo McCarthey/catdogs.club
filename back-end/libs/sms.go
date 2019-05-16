@@ -4,7 +4,6 @@ import (
 	"fmt"
 
 	configs "catdogs.club/back-end/configs/common"
-
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk"
 	"github.com/aliyun/alibaba-cloud-sdk-go/sdk/requests"
 )

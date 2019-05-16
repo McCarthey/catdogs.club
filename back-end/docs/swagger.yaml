@@ -1,0 +1,11 @@
+basePath: /api/v1
+host: '{{.Host}}'
+info:
+  contact:
+    name: Yoko
+  description: CatDogs API 文档
+  license: {}
+  title: CatDogs API
+  version: "1.0"
+paths: {}
+swagger: "2.0"

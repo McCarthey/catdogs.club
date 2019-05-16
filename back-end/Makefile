@@ -1,6 +1,6 @@
-.PHONY: build docker clean help
+.PHONY: build docker clean help doc ck
 
-all: build docker clean
+all: doc build docker clean
 
 build:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o catdogs
@@ -11,15 +11,22 @@ docker:
 	docker tag catdogs yokooll/catdogs
 	docker push yokooll/catdogs
 	@echo "------ docker push success ------"
+	
+doc:
+	@swag init
 
 clean:
-	@docker images|grep none|awk '{print $3}'|xargs docker rmi -f
 	@rm -rf catdogs
 	@go clean -i .
 	@echo "------ clean done ------"
 	@docker images
 
+ck:
+	@docker images|grep none|awk '{print $3}'|xargs docker rmi -f
+
 help:
 	@echo "make: compile packages and dependencies"
 	@echo "make docker: build,tag,push docker image"
 	@echo "make clean: remove object files and cached files"
+	@echo "make doc: swag init"
+	@echo "make ck: clean docker images"
