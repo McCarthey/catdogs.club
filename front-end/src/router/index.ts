@@ -24,6 +24,14 @@ const routes = [
                 component: './forum',
             },
             {
+                path: '/tutorial',
+                component: './tutorial',
+            },
+            {
+                path: '/',
+                redirect: '/home',
+            },
+            {
                 path: '*',
                 component: './page404',
             },
