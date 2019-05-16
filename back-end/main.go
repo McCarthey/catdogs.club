@@ -2,7 +2,7 @@
 // @version 1.0
 // @description CatDogs API 文档
 // @contact.name Yoko
-// @BasePath /api/v1
+// @BasePath /api
 
 package main
 

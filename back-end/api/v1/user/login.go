@@ -16,6 +16,15 @@ type User struct {
 	Password string `form:"password"`
 }
 
+// @Tags 用户
+// @Summary 登录接口
+// @Description 登录接口
+// @Accept  json
+// @Produce  json
+// @Param email formData string true "邮箱账号"
+// @Param password formData string true "密码"
+// @Success 200 {string} string "{"code": 0, "data": {}, "msg": "success"}"
+// @Router /login [post]
 func Login(c *gin.Context) {
 	var user User
 	if err := c.ShouldBind(&user); err != nil {
