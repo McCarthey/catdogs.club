@@ -27,11 +27,57 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
+        "0":
           description: '{"code": 0, "data": {}, "msg": "success"}'
           schema:
             type: string
+        "999":
+          description: 服务器出问题
+          schema:
+            type: string
+        "1002":
+          description: 用户不存在
+          schema:
+            type: string
+        "1003":
+          description: 密码错误
+          schema:
+            type: string
       summary: 登录接口
+      tags:
+      - 用户
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: 注册接口
+      parameters:
+      - description: 邮箱账号
+        in: formData
+        name: email
+        required: true
+        type: string
+      - description: 密码
+        in: formData
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: '{"code": 0, "data": {}, "msg": "success"}'
+          schema:
+            type: string
+        "999":
+          description: 服务器出问题
+          schema:
+            type: string
+        "1000":
+          description: 用户已存在
+          schema:
+            type: string
+      summary: 注册接口
       tags:
       - 用户
 swagger: "2.0"

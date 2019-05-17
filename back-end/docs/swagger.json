@@ -42,8 +42,77 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "0": {
                         "description": "{\"code\": 0, \"data\": {}, \"msg\": \"success\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "1002": {
+                        "description": "用户不存在",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "1003": {
+                        "description": "密码错误",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "999": {
+                        "description": "服务器出问题",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "description": "注册接口",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "用户"
+                ],
+                "summary": "注册接口",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "邮箱账号",
+                        "name": "email",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "密码",
+                        "name": "password",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{\"code\": 0, \"data\": {}, \"msg\": \"success\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "1000": {
+                        "description": "用户已存在",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "999": {
+                        "description": "服务器出问题",
                         "schema": {
                             "type": "string"
                         }

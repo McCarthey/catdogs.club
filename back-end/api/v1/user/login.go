@@ -23,7 +23,10 @@ type User struct {
 // @Produce  json
 // @Param email formData string true "邮箱账号"
 // @Param password formData string true "密码"
-// @Success 200 {string} string "{"code": 0, "data": {}, "msg": "success"}"
+// @Success 0 {string} string "{"code": 0, "data": {}, "msg": "success"}"
+// @Failure -999 {string} string "服务器出问题"
+// @Failure -1002 {string} string "用户不存在"
+// @Failure -1003 {string} string "密码错误"
 // @Router /login [post]
 func Login(c *gin.Context) {
 	var user User
