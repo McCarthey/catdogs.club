@@ -5,6 +5,7 @@ import styles from './style.scss'
 
 import api_sign from '@/services/sign'
 import { SignUpReq } from '@/types/sign'
+import router from 'umi/router'
 
 class SignUp extends React.Component<any, any> {
 	constructor(props: any) {
@@ -19,6 +20,7 @@ class SignUp extends React.Component<any, any> {
 				try {
 					const res = await api_sign.signInByEmail(values)
 					message.success('登录成功')
+					router.push('/home')
 					console.log('ressss', res)
 				} catch (e) {
 					console.log('error code:', e.code)
