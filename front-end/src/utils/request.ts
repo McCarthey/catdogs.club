@@ -1,12 +1,16 @@
 import fetch from 'dva/fetch'
 import { message } from 'antd'
 
+interface HttpError {
+    response?: any
+}
+
 function checkStatus(response: { status: number; statusText: string | undefined }) {
     if (response.status >= 200 && response.status < 300) {
         return response
     }
 
-    const error = new Error(response.statusText)
+    const error = <HttpError>(new Error(response.statusText))
     error.response = response
     throw error
 }
