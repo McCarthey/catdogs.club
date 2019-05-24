@@ -59,7 +59,7 @@ async function postJSON (
 
     const data = await response.json()
 
-    handleResponseData(data, toast)
+    return handleResponseData(data, toast)
 }
 
 export default request

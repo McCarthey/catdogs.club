@@ -1,6 +1,13 @@
+interface SignModelState {
+    isLoggedIn: boolean
+}
 interface DvaEffect {
     call: any
     put: any
 }
 
-export { DvaEffect }
+interface ModelState {
+    sign: SignModelState
+}   
+
+export { DvaEffect, ModelState }

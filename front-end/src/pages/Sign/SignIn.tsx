@@ -1,12 +1,10 @@
 import React from 'react'
 import { connect } from 'dva'
-import { Form, Icon, Input, Button, Checkbox, message } from 'antd'
+import { Form, Icon, Input, Button, Checkbox } from 'antd'
 import Link from 'umi/link'
 import styles from './style.scss'
 
-import api_sign from '@/services/sign'
 import { SignUpReq } from '@/types/sign'
-import router from 'umi/router'
 
 class SignUp extends React.Component<any, any> {
     constructor(props: any) {
@@ -18,7 +16,7 @@ class SignUp extends React.Component<any, any> {
         e.preventDefault()
         this.props.form.validateFields((err: any, values: SignUpReq) => {
             this.props.dispatch({
-                type: 'global/login',
+                type: 'sign/login',
                 payload: values,
             })
         })
