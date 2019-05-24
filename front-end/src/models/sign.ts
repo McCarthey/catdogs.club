@@ -1,6 +1,9 @@
 import api_sign from '../services/sign'
 import { SignUpReq } from '@/types/sign'
 import { DvaEffect } from '@/types/common'
+import { message } from 'antd'
+import router from 'umi/router'
+
 
 interface GlobalModelState {
     isLoggedIn: boolean
@@ -23,8 +26,10 @@ export default {
     },
     effects: {
         *login({ payload: { email, password } }: { payload: SignUpReq }, { call, put }: DvaEffect) {
-            yield call(api_sign.signInByEmail, { email, password })
+            const res = yield call(api_sign.signInByEmail, { email, password })
             yield put({ type: 'changeLogState', payload: { isLoggedIn: true } })
+            message.success(res.msg)
+            router.push('/home')
         },
     },
 }
