@@ -59,6 +59,7 @@ class SignUp extends React.Component<any, any> {
                         type="primary"
                         htmlType="submit"
                         className={styles['login-form-button']}
+                        loading={this.props.loading}
                     >
                         登录
                     </Button>
@@ -72,8 +73,7 @@ class SignUp extends React.Component<any, any> {
 const WrappedSignUpForm = Form.create({ name: 'normal_login' })(SignUp)
 
 function mapStateToProps(state: any) {
-    const { isLoggedIn } = state
-    return { isLoggedIn }
+    return { loading: state.loading.models.sign}
 }
 
 export default connect(mapStateToProps)(WrappedSignUpForm)

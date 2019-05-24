@@ -22,7 +22,7 @@ export default {
         },
     },
     effects: {
-        *signUp({ payload: { email, password }}: { payload: SignUpReq }, { call, put }: DvaEffect) {
+        *signUp({ payload: { email, password }}: { payload: SignUpReq }, { call }: DvaEffect) {
             const res = yield call(api_sign.signUpByEmail, { email, password })
             console.log(res)
             Modal.success({

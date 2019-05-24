@@ -18,6 +18,8 @@ class Index extends React.Component<any, any> {
         }
     }
 
+    // TODO: 将登录状态存储到ls中，发送请求时如遇到cookie-session失效的code，则清除ls中的登录状态，并跳转到登录页
+
     render() {
         console.log(this.props)
         const menu = (
