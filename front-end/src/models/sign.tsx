@@ -4,11 +4,7 @@ import { SignUpReq } from '@/types/sign'
 import { DvaEffect } from '@/types/common'
 import { message, Modal } from 'antd'
 import router from 'umi/router'
-
-
-interface GlobalModelState {
-    isLoggedIn: boolean
-}
+import { SignModelState } from '../types/common'
 
 interface LoginAction {
     payload: {
@@ -19,9 +15,9 @@ interface LoginAction {
 export default {
     state: {
         isLoggedIn: false,
-    } as GlobalModelState,
+    } as SignModelState,
     reducers: {
-        changeLogState(state: GlobalModelState, { payload: { isLoggedIn } }: LoginAction) {
+        changeLogState(state: SignModelState, { payload: { isLoggedIn } }: LoginAction) {
             return { ...state, isLoggedIn }
         },
     },
