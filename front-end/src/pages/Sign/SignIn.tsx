@@ -60,6 +60,7 @@ class SignUp extends React.Component<any, any> {
                         htmlType="submit"
                         className={styles['login-form-button']}
                         loading={this.props.loading}
+                        disabled={this.props.loading}
                     >
                         登录
                     </Button>
