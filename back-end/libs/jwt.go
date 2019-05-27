@@ -3,21 +3,23 @@ package libs
 import (
 	"time"
 
+	configs "catdogs.club/back-end/configs/common"
+
 	"github.com/dgrijalva/jwt-go"
 )
 
-var jwtSecret = []byte("catdogs===")
+var jwtSecret = []byte(configs.PwSalt)
 
 type Claims struct {
-	Id int `json:"id"`
+	Openid string `json:"openid"`
 	jwt.StandardClaims
 }
 
-func GenerateToken(id int) (string, error) {
+func GenerateToken(openid string) (string, error) {
 	nowTime := time.Now()
 	expireTime := nowTime.Add(24 * time.Hour)
 	claims := Claims{
-		id,
+		openid,
 		jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
 			Issuer:    "catdogs",

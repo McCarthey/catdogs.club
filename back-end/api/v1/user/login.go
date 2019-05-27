@@ -64,6 +64,9 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
+	token, err := libs.GenerateToken(u.Openid)
+	logging.Error("Gen Token error: ", err)
+	c.SetCookie("token", token, 1, "", "", true, true)
 	libs.Resp(libs.R{
 		C:    c,
 		Code: 0,
