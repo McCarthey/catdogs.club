@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'dva'
+import { ModelState } from '../types/common'
 import styles from './layout.scss'
 import { Layout, Menu, Avatar, Dropdown } from 'antd'
 import Link from 'umi/link'
@@ -7,15 +9,16 @@ import { TransitionGroup, CSSTransition } from 'react-transition-group'
 const { Header, Footer, Content } = Layout
 const routes = require('../router')
 
-export default class Index extends React.Component<any, any> {
+class Index extends React.Component<any, any> {
     constructor(props: any) {
         super(props)
         this.state = {
             username: 'Admin',
-            isSignIn: false,
             routes: routes.slice(-2, -1)[0].routes,
         }
     }
+
+    // TODO: 将登录状态存储到ls中，发送请求时如遇到cookie-session失效的code，则清除ls中的登录状态，并跳转到登录页
 
     render() {
         console.log(this.props)
@@ -75,7 +78,7 @@ export default class Index extends React.Component<any, any> {
                         </Menu>
                     </div>
                     <div className={styles['avatar-wrap']}>
-                        {this.state.isSignIn ? (
+                        {this.props.isLoggedIn ? (
                             <Dropdown overlay={menu} trigger={['hover']}>
                                 <div>
                                     <Avatar size="large" icon="user" className={styles.avatar} />
@@ -104,3 +107,10 @@ export default class Index extends React.Component<any, any> {
         )
     }
 }
+
+function mapStateToProps(state: ModelState) {
+    const { isLoggedIn } = state.sign
+    return { isLoggedIn }
+}
+
+export default connect(mapStateToProps)(Index)

@@ -1,10 +1,8 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Modal } from 'antd'
+import { connect } from 'dva'
+import { Form, Icon, Input, Button } from 'antd'
 import Link from 'umi/link'
-import router from 'umi/router'
 import styles from './style.scss'
-
-import api_sign from '@/services/sign'
 
 import { SignUpReq } from '@/types/sign'
 
@@ -24,35 +22,12 @@ class SignUp extends React.Component<any, signUpState> {
 
     handleSignUp = (e: any) => {
         e.preventDefault()
-        this.props.form.validateFields(async (err: any, values: SignUpReq) => {
-            if (!err) {
-                try {
-					const res = await api_sign.signUpByEmail(values)
-                    this.setState(
-                        {
-                            email: this.props.form.getFieldValue('email'),
-                            registerDone: true,
-                        },
-                        () => {
-                            Modal.success({
-                                title: '注册成功',
-                                content: (
-                                    <div>
-                                        请前往
-                                        <span style={{ fontWeight: 'bold' }}>
-                                            {this.state.email}
-                                        </span>
-                                        查看收件箱，激活账号
-                                    </div>
-								),
-								onOk() { router.push('/sign/signin')}
-                            })
-                        },
-                    )
-                } catch (e) {
-                    console.log('error code:', e.code)
-                }
-            }
+        this.props.form.validateFields((err: any, values: SignUpReq) => {
+            if(err) return false
+            this.props.dispatch({
+                type: 'sign/signUp',
+                payload: values,
+            })
         })
     }
 
@@ -72,7 +47,10 @@ class SignUp extends React.Component<any, signUpState> {
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('password', {
-                        rules: [{ required: true, message: '请输入密码' }],
+                        rules: [
+                            { required: true, message: '请输入密码' },
+                            { min: 6, max: 16, message: '密码6-16位'}
+                        ],
                     })(
                         <Input
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -85,6 +63,8 @@ class SignUp extends React.Component<any, signUpState> {
                     <Button
                         type="primary"
                         htmlType="submit"
+                        loading={this.props.loading}
+                        disabled={this.props.loading}
                         className={styles['login-form-button']}
                     >
                         注册
@@ -98,4 +78,8 @@ class SignUp extends React.Component<any, signUpState> {
 
 const WrappedSignUpForm = Form.create({ name: 'normal_login' })(SignUp)
 
-export default WrappedSignUpForm
+function mapStateToProps(state: any) {
+    return { loading: state.loading.models.sign }
+}
+
+export default connect(mapStateToProps)(WrappedSignUpForm)
