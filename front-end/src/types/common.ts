@@ -4,6 +4,8 @@ interface SignModelState {
 interface DvaEffect {
     call?: any
     put?: any
+    takeEvery?: any
+    select? :any
 }
 
 interface ModelState {

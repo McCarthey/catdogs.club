@@ -23,12 +23,11 @@ class SignUp extends React.Component<any, signUpState> {
     handleSignUp = (e: any) => {
         e.preventDefault()
         this.props.form.validateFields((err: any, values: SignUpReq) => {
-            if (!err) {
-                this.props.dispatch({
-                    type: 'sign/signUp',
-                    payload: values,
-                })
-            }
+            if(err) return false
+            this.props.dispatch({
+                type: 'sign/signUp',
+                payload: values,
+            })
         })
     }
 
@@ -48,7 +47,10 @@ class SignUp extends React.Component<any, signUpState> {
                 </Form.Item>
                 <Form.Item>
                     {getFieldDecorator('password', {
-                        rules: [{ required: true, message: '请输入密码' }],
+                        rules: [
+                            { required: true, message: '请输入密码' },
+                            { min: 6, max: 16, message: '密码6-16位'}
+                        ],
                     })(
                         <Input
                             prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
@@ -77,7 +79,7 @@ class SignUp extends React.Component<any, signUpState> {
 const WrappedSignUpForm = Form.create({ name: 'normal_login' })(SignUp)
 
 function mapStateToProps(state: any) {
-    return { loading: state.loading.models.sign}
+    return { loading: state.loading.models.sign }
 }
 
 export default connect(mapStateToProps)(WrappedSignUpForm)

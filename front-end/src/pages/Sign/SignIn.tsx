@@ -15,6 +15,7 @@ class SignUp extends React.Component<any, any> {
     handleSubmit = (e: any) => {
         e.preventDefault()
         this.props.form.validateFields((err: any, values: SignUpReq) => {
+            if(err) return false
             this.props.dispatch({
                 type: 'sign/login',
                 payload: values,
