@@ -10,12 +10,12 @@ var Db *xorm.Engine
 
 func InitModel() {
 	var err error
-	Db, err = xorm.NewEngine("mysql", configs.DbAddr)
+	Db, err = xorm.NewEngine("mysql", configs.C.DbAddr)
 	if err != nil {
 		panic(err)
 	}
-	Db.SetMaxIdleConns(configs.IdleConns)
-	Db.SetMaxOpenConns(configs.OpenConns)
+	Db.SetMaxIdleConns(configs.C.IdleConns)
+	Db.SetMaxOpenConns(configs.C.OpenConns)
 
 	initTables()
 }

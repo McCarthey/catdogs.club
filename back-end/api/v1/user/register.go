@@ -39,7 +39,7 @@ func Register(c *gin.Context) {
 		return
 	}
 	code := libs.RandString(16)
-	url := configs.ActivateUrl + "?v=" + code
+	url := configs.C.ActivateUrl + "?v=" + code
 	cont := fmt.Sprintf("点击链接激活您的账号: %s", url)
 	go saveUser(&user)
 	go saveCode(code, &user)
@@ -63,7 +63,7 @@ func saveCode(code string, param *User) {
 
 // 保存用户到数据库
 func saveUser(param *User) {
-	pwData := md5.Sum([]byte(param.Password + configs.PwSalt))
+	pwData := md5.Sum([]byte(param.Password + configs.C.PwSalt))
 	pwHex := fmt.Sprintf("%x", pwData)
 	session := models.Db.NewSession()
 	defer session.Close()

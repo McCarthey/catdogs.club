@@ -4,11 +4,10 @@ import (
 	"time"
 
 	configs "catdogs.club/back-end/configs/common"
-
 	"github.com/dgrijalva/jwt-go"
 )
 
-var jwtSecret = []byte(configs.PwSalt)
+var jwtSecret = []byte(configs.C.PwSalt)
 
 type Claims struct {
 	Openid string `json:"openid"`

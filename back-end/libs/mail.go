@@ -49,11 +49,11 @@ func SendMail(to, sub, content string) error {
 	utc := GetUtcTime()
 	param := url.Values{}
 	param.Add("Action", "SingleSendMail")
-	param.Add("AccountName", configs.FromEmail)
+	param.Add("AccountName", configs.C.FromEmail)
 	param.Add("ReplyToAddress", "true")
 	param.Add("AddressType", "1")
 	param.Add("ToAddress", to)
-	param.Add("FromAlias", configs.SignName)
+	param.Add("FromAlias", configs.C.SignName)
 	param.Add("Subject", sub)
 	param.Add("HtmlBody", content)
 	param.Add("Format", "JSON")
@@ -61,12 +61,12 @@ func SendMail(to, sub, content string) error {
 	param.Add("SignatureMethod", "HMAC-SHA1")
 	param.Add("SignatureNonce", utc)
 	param.Add("SignatureVersion", "1.0")
-	param.Add("AccessKeyId", configs.AccessKeyId)
+	param.Add("AccessKeyId", configs.C.AccessKeyId)
 	param.Add("Timestamp", utc)
 	fmt.Println(param.Encode())
 	percent := PercentEncode(param.Encode())
 	stringToSign := "GET" + "&" + url.QueryEscape("/") + "&" + url.QueryEscape(percent)
-	signature := CreateSignature(configs.AccessSecret, stringToSign)
+	signature := CreateSignature(configs.C.AccessSecret, stringToSign)
 	param.Add("Signature", signature)
 
 	tr := &http.Transport{

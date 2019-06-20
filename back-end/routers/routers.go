@@ -8,7 +8,7 @@ import (
 
 func InitRouter() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
-	if configs.EnvModel == "debug" {
+	if configs.C.EnvModel == "debug" {
 		gin.SetMode(gin.DebugMode)
 	}
 

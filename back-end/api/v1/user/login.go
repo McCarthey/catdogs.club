@@ -55,7 +55,7 @@ func Login(c *gin.Context) {
 		})
 		return
 	}
-	pwd := md5.Sum([]byte(user.Password + configs.PwSalt))
+	pwd := md5.Sum([]byte(user.Password + configs.C.PwSalt))
 	pwdHex := fmt.Sprintf("%x", pwd)
 	if pwdHex != u.Password {
 		libs.Resp(libs.R{

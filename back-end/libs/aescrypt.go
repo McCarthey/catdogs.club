@@ -22,8 +22,8 @@ func PKCS7UnPadding(org []byte) []byte {
 }
 
 func AESDecrypt(str string) string {
-	block, _ := aes.NewCipher([]byte(configs.AesKey))
-	blockMode := cipher.NewCBCDecrypter(block, []byte(configs.AesKey))
+	block, _ := aes.NewCipher([]byte(configs.C.AesKey))
+	blockMode := cipher.NewCBCDecrypter(block, []byte(configs.C.AesKey))
 	old, _ := hex.DecodeString(str)
 	org := make([]byte, len(old))
 	blockMode.CryptBlocks(org, []byte(old))
@@ -32,9 +32,9 @@ func AESDecrypt(str string) string {
 }
 
 func AESEncrypt(str string) string {
-	block, _ := aes.NewCipher([]byte(configs.AesKey))
+	block, _ := aes.NewCipher([]byte(configs.C.AesKey))
 	org := PKCS7Padding([]byte(str), block.BlockSize())
-	blockMode := cipher.NewCBCEncrypter(block, []byte(configs.AesKey))
+	blockMode := cipher.NewCBCEncrypter(block, []byte(configs.C.AesKey))
 	cryted := make([]byte, len(org))
 	blockMode.CryptBlocks(cryted, org)
 	return hex.EncodeToString(cryted)

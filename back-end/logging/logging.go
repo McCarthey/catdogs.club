@@ -22,7 +22,7 @@ var (
 )
 
 func init() {
-	logFile, err := os.OpenFile(configs.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	logFile, err := os.OpenFile(configs.C.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -18,7 +18,7 @@ const (
 )
 
 func SendSms(phone, code string) error {
-	client, err := sdk.NewClientWithAccessKey("cn-hangzhou", configs.AccessKeyId, configs.AccessSecret)
+	client, err := sdk.NewClientWithAccessKey("cn-hangzhou", configs.C.AccessKeyId, configs.C.AccessSecret)
 	if err != nil {
 		fmt.Println(err)
 		return err
@@ -31,8 +31,8 @@ func SendSms(phone, code string) error {
 	request.Version = version
 	request.ApiName = apiName
 	request.QueryParams["RegionId"] = regionId
-	request.QueryParams["SignName"] = configs.SignName
-	request.QueryParams["TemplateCode"] = configs.TemplateCode
+	request.QueryParams["SignName"] = configs.C.SignName
+	request.QueryParams["TemplateCode"] = configs.C.TemplateCode
 	request.QueryParams["PhoneNumbers"] = phone
 	request.QueryParams["TemplateParam"] = "{\"code\":\"" + code + "\"}"
 
