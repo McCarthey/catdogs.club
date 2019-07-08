@@ -55,8 +55,8 @@ class Index extends React.Component<any, any> {
         return (
             <Layout className={styles.normal}>
                 <Header className={styles.header}>
-                    <div>
-                        <div className="logo" />
+                    <div className={styles['menu-container']}>
+                        <div className={styles.logo}>Logo</div>
                         <Menu
                             mode="horizontal"
                             defaultSelectedKeys={[defaultSelectedKeys]}
@@ -95,7 +95,7 @@ class Index extends React.Component<any, any> {
                 </Header>
                 <TransitionGroup exit={false}>
                     <CSSTransition key={location.pathname} classNames="fade" timeout={300}>
-                        <Content style={{ background: '#fff', padding: 24, minHeight: 280 }}>
+                        <Content className={styles['main-content']}>
                             {this.props.children}
                         </Content>
                     </CSSTransition>
