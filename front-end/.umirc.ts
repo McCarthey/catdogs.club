@@ -7,6 +7,9 @@ const config: IConfig = {
     treeShaking: true,
     routes,
     urlLoaderExcludes: [/.scss$/],
+    theme: {
+        'primary-color': '#e91e63',
+    },
     chainWebpack(config) {
         // 使用scss-resources-loader为项目注入全局变量
         config.module
