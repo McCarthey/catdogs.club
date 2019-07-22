@@ -1,9 +1,9 @@
 package client
 
 import (
-	pb "catdogs-service/pb"
 	"context"
 
+	pb "catdogs.club/back-end/pb"
 	"github.com/micro/go-micro"
 )
 

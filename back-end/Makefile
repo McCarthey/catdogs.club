@@ -1,4 +1,4 @@
-.PHONY: build docker clean help doc ck
+.PHONY: build docker clean help doc ck genpb
 
 all: doc build docker clean
 
@@ -11,6 +11,9 @@ docker:
 	docker tag catdogs yokooll/catdogs
 	docker push yokooll/catdogs
 	@echo "------ docker push success ------"
+
+genpb:
+	protoc -I=$$GOPATH/src/catdogs-proto --micro_out=./pb --go_out=./pb $$GOPATH/src/catdogs-proto/*proto
 	
 doc:
 	@swag init
@@ -30,3 +33,4 @@ help:
 	@echo "make clean: remove object files and cached files"
 	@echo "make doc: swag init"
 	@echo "make ck: clean docker images"
+	@echo "make genpb: generate pb files"
