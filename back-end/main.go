@@ -30,7 +30,7 @@ func runServer() {
 	router := routers.InitRouter()
 
 	s := &http.Server{
-		Addr:           ":8888",
+		Addr:           ":9999",
 		Handler:        router,
 		ReadTimeout:    18 * time.Second,
 		WriteTimeout:   18 * time.Second,

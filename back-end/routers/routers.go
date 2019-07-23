@@ -1,6 +1,7 @@
 package routers
 
 import (
+	"catdogs.club/back-end/api/v1/post"
 	"catdogs.club/back-end/api/v1/user"
 	configs "catdogs.club/back-end/configs/common"
 	"github.com/gin-gonic/gin"
@@ -27,4 +28,5 @@ func registerApi(e *gin.Engine) {
 	apiv1.GET("/verify", user.Verify)
 	apiv1.POST("/login", user.Login)
 	apiv1.POST("/register", user.Register)
+	apiv1.POST("/setpost", post.SetPostHandler)
 }
