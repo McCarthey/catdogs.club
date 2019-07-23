@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	clienName = "post.client"
+	postClienName = "post.client"
 )
 
 var (
@@ -16,7 +16,7 @@ var (
 )
 
 func init() {
-	service := micro.NewService(micro.Name(clienName))
+	service := micro.NewService(micro.Name(postClienName))
 	service.Init()
 	postClient = pb.NewPostService("post", service.Client())
 }
