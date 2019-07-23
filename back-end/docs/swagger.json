@@ -119,6 +119,64 @@
                     }
                 }
             }
+        },
+        "/setpost": {
+            "post": {
+                "description": "发布文章",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "文章"
+                ],
+                "summary": "发布文章",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "标题",
+                        "name": "title",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "内容",
+                        "name": "content",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "作者",
+                        "name": "author",
+                        "in": "formData",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{\"code\": 0, \"data\": {}, \"msg\": \"success\"}",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "3000": {
+                        "description": "参数错误",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    "999": {
+                        "description": "服务器出问题",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     }
 }

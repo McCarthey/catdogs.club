@@ -80,4 +80,43 @@ paths:
       summary: 注册接口
       tags:
       - 用户
+  /setpost:
+    post:
+      consumes:
+      - application/json
+      description: 发布文章
+      parameters:
+      - description: 标题
+        in: formData
+        name: title
+        required: true
+        type: string
+      - description: 内容
+        in: formData
+        name: content
+        required: true
+        type: string
+      - description: 作者
+        in: formData
+        name: author
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "0":
+          description: '{"code": 0, "data": {}, "msg": "success"}'
+          schema:
+            type: string
+        "999":
+          description: 服务器出问题
+          schema:
+            type: string
+        "3000":
+          description: 参数错误
+          schema:
+            type: string
+      summary: 发布文章
+      tags:
+      - 文章
 swagger: "2.0"
