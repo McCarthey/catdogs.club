@@ -1,13 +1,10 @@
 package user
 
 import (
-	"crypto/md5"
-	"fmt"
-
-	configs "catdogs.club/back-end/configs/common"
+	client "catdogs.club/back-end/client/user"
 	"catdogs.club/back-end/libs"
 	"catdogs.club/back-end/logging"
-	"catdogs.club/back-end/models"
+	pb "catdogs.club/back-end/pb"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,45 +23,27 @@ import (
 func Login(c *gin.Context) {
 	var user User
 	if err := c.ShouldBind(&user); err != nil {
-		fmt.Println(err.Error())
 		logging.Info("bind user err", err.Error())
+		libs.Resp(libs.R{
+			C:    c,
+			Code: -3000,
+		})
+		return
 	}
-	u := models.User{
-		Email: user.Email,
-	}
-	logging.Info(u)
-	has, err := u.Get()
-	fmt.Println(err)
+
+	rsp, err := client.Login(&pb.LoginReq{
+		Email:    user.Email,
+		Password: user.Password,
+	})
 	if err != nil {
-		logging.Info("get user err", err.Error())
-		libs.Resp(libs.R{
-			C:    c,
-			Code: -999,
-		})
-		return
+		logging.Error("Call Login err: ", err)
 	}
-	if !has {
-		libs.Resp(libs.R{
-			C:    c,
-			Code: -1002,
-		})
-		return
-	}
-	pwd := md5.Sum([]byte(user.Password + configs.C.PwSalt))
-	pwdHex := fmt.Sprintf("%x", pwd)
-	if pwdHex != u.Password {
-		libs.Resp(libs.R{
-			C:    c,
-			Code: -1003,
-		})
-		return
-	}
-	token, err := libs.GenerateToken(u.Openid)
-	logging.Error("Gen Token error: ", err)
-	c.SetCookie("token", token, 1, "", "catdogs.club", true, true)
 	libs.Resp(libs.R{
 		C:    c,
-		Code: 0,
-		Msg:  "登录成功",
+		Code: int(rsp.Code),
+		Msg:  rsp.Msg,
+		Data: gin.H{
+			"token": rsp.Token,
+		},
 	})
 }
