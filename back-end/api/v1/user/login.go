@@ -11,11 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type User struct {
-	Email    string `form:"email" binding:"email"`
-	Password string `form:"password"`
-}
-
 // @Tags 用户
 // @Summary 登录接口
 // @Description 登录接口
