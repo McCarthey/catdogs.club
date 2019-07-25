@@ -28,3 +28,11 @@ func Login(req *pb.LoginReq) (*pb.LoginRsp, error) {
 	}
 	return rsp, nil
 }
+
+func Regist(req *pb.RegisterReq) (*pb.RegisterRsp, error) {
+	rsp, err := userClient.Register(context.TODO(), req)
+	if err != nil {
+		return nil, err
+	}
+	return rsp, nil
+}
