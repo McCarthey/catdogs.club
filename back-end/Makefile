@@ -1,6 +1,6 @@
 .PHONY: build docker clean help doc ck genpb
 
-all: doc build docker clean
+all: doc genpb build docker clean
 
 build:
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o catdogs
