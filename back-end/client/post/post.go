@@ -28,3 +28,11 @@ func SetPost(req *pb.SetPostReq) (*pb.SetPostRsp, error) {
 	}
 	return rsp, nil
 }
+
+func GetPostById(req *pb.GetPostByIdReq) (*pb.GetPostByIdRsp, error) {
+	rsp, err := postClient.GetPostById(context.TODO(), req)
+	if err != nil {
+		return nil, err
+	}
+	return rsp, nil
+}
