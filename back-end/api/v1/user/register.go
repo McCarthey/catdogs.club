@@ -41,8 +41,8 @@ func Register(c *gin.Context) {
 	logging.Info("Call Regist Err: ", err)
 	libs.Resp(libs.R{
 		C:    c,
-		Code: int(rsp.Code),
-		Msg:  rsp.Msg,
+		Code: int(rsp.Rsp.Code),
+		Msg:  rsp.Rsp.Msg,
 		Data: gin.H{
 			"token": rsp.Token,
 		},
