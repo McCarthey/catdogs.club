@@ -23,16 +23,15 @@ func init() {
 
 func Login(req *pb.LoginReq) (*pb.LoginRsp, error) {
 	rsp, err := userClient.Login(context.TODO(), req)
-	if err != nil {
-		return nil, err
-	}
-	return rsp, nil
+	return rsp, err
 }
 
 func Regist(req *pb.RegisterReq) (*pb.RegisterRsp, error) {
 	rsp, err := userClient.Register(context.TODO(), req)
-	if err != nil {
-		return nil, err
-	}
-	return rsp, nil
+	return rsp, err
+}
+
+func SetProfile(req *pb.SetProfileReq) (*pb.SetProfileRsp, error) {
+	rsp, err := userClient.SetProfile(context.TODO(), req)
+	return rsp, err
 }
