@@ -12,17 +12,17 @@ const routes = [
         component: './_layout',
         routes: [
             {
-                path: '/news',
-                component: './news',
+                path: '/gif',
+                component: './gif',
             },
             {
                 path: '/home',
                 component: './home',
             },
-            {
-                path: '/forum',
-                component: './forum',
-            },
+            // {
+            //     path: '/forum',
+            //     component: './forum',
+            // },
             {
                 path: '/tutorial',
                 component: './tutorial',

@@ -69,12 +69,12 @@ class Index extends React.Component<any, any> {
                             <Menu.Item key="/tutorial">
                                 <Link to="/tutorial">教程</Link>
                             </Menu.Item>
-                            <Menu.Item key="/news">
-                                <Link to="/news">资讯</Link>
+                            <Menu.Item key="/gif">
+                                <Link to="/gif">趣图</Link>
                             </Menu.Item>
-                            <Menu.Item key="/forum">
+                            {/* <Menu.Item key="/forum">
                                 <Link to="/forum">论坛</Link>
-                            </Menu.Item>
+                            </Menu.Item> */}
                         </Menu>
                     </div>
                     <div className={styles['avatar-wrap']}>
