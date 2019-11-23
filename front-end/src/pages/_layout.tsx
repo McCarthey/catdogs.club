@@ -87,8 +87,8 @@ class Index extends React.Component<any, any> {
                             </Dropdown>
                         ) : (
                             <div>
-                                <Link to="/sign/signin">登录 </Link> /{' '}
-                                <Link to="/sign/signup">注册</Link>
+                                {/* <Link to="/sign/signin">登录 </Link> /{' '}
+                                <Link to="/sign/signup">注册</Link> */}
                             </div>
                         )}
                     </div>
